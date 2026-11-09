@@ -12,7 +12,6 @@
 
     <style>
         #content {
-            grid-template-columns : repeat(2, 1fr); /* two columns, equal in size */
             grid-template-rows : repeat(2); /* two rows */
         }
 
@@ -33,7 +32,12 @@
     <?php include "header.php" ?>
 
     <div id="content">
-        <div class="double-column card">
+        <div class="card" style="border : none;">
+            <h4> New Centre ? </h4>
+            <a href="RC_addnewcentre.php"> <div class="button"> Add Record </div> </a>
+        </div>
+        
+        <div class="card">
             <h2> List of Recycling Centres </h2>
             <?php
                 echo "<table>";
@@ -43,6 +47,7 @@
                         <th> Name </th>
                         <th> Address  </th>
                         <th> Material Accepted </th>
+                        <th> Modify </th>
                     </tr>
                 ";
                 
@@ -54,6 +59,9 @@
                     echo "<td>" . $centres["name"] . "</td>";
                     echo "<td>" . $centres["address"] . "</td>";
                     echo "<td>" . $centres["accepted_material_type"] . "</td>";
+            ?>
+                    <td> <a href="RC_editcentre.php?centre_id=<?php echo $centres['centre_id']; ?>"> Update </a> </td>
+            <?php
                     echo "</tr>";
                 }
 
@@ -61,15 +69,7 @@
             ?>
         </div>
 
-        <div class="card" style="border : none;">
-            <h4> New Centre ? </h4>
-            <a href="RC_addnewcentre.php"> <div class="button"> Add Record </div> </a>
-        </div>
-
-        <div class="card" style="border : none;">
-            <h4> Centre Details Changed ? </h4>
-            <div class="button"> Update Record </div>
-        </div>
+        
     </div>
 </body>
 </html>

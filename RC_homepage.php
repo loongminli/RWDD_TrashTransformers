@@ -14,7 +14,7 @@
         table { 
             margin : auto;
         }
-        
+
         #unassigned {
             display : grid;
             grid-template-columns : 40% 60%;
