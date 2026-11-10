@@ -15,4 +15,6 @@
     } else {
         echo "<script> window.location.href = 'RC_recyclables.php'; alert('Status update failed.'); </script>";        
     }
+
+    mysqli_close($conn);
 ?>
