@@ -1,24 +1,30 @@
 <?php
     include "dbconn.php";
-
-    function markComplete() {
-        echo "<script> alert('test'); </script>";
-        // $query = "
-        //     UPDATE dropoff_recyclable
-        //     SET
-        //         status = 'complete'
-        //     WHERE dropoff_id = '$id';
-        // ";
-
-        // if (mysqli_query($conn, $query)) {
-        //     echo "<script> alert('Dropoff $id successfully marked as completed!'); </script>";
-        // } else {
-        //     echo "<script> alert('Completion update failed.'); </script>";
-        // }
-
-        // echo "<script> window.location.reload() </script>";
-    }
 ?>
+
+<script>
+    function markComplete(button) {
+        let id = button.value;
+        let isConfirmed = confirm(`
+Mark Dropoff ${id} as complete ?
+        `);
+
+        if (isConfirmed) {
+            window.location.href = `markcomplete_r.php?dropoff_id=${id}`;
+        }
+    }
+
+    function markSent(button) {
+        let id = button.value;
+        let isConfirmed = confirm(`
+Mark Dropoff ${id} as sent ?
+        `);
+
+        if (isConfirmed) {
+            window.location.href = `marksent_r.php?dropoff_id=${id}`;
+        }
+    }
+</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,27 +59,7 @@
             ?>
         </div>
 
-        <div class="double-column card">
-            <h2> Recyclables </h2>
-            <?php
-                $recyclables_result = mysqli_query($conn, "SELECT r.*, item FROM dropoff_recyclable r INNER JOIN dropoff on r.dropoff_id = dropoff.dropoff_id ORDER BY dropoff_id DESC;");
-
-                echo "<table>";
-                echo "<tr><th>ID</th> <th>Item</th> <th>Material Type</th> <th>Action</th> <th>Status</th></tr>";
-                while ($recyclables = mysqli_fetch_assoc($recyclables_result)) {
-                    echo "<tr>";
-                    echo "<td>" . $recyclables["dropoff_id"] . "</td>";
-                    echo "<td>" . $recyclables["item"] . "</td>";
-                    echo "<td>" . $recyclables["material_type"] . "</td>";
-                    echo "<td>" . $recyclables["action"] . "</td>";
-                    echo "<td>" . $recyclables["status"] . "</td>";
-                    echo "</tr>";
-                }
-                echo "</table>";
-            ?>
-        </div>
-
-        <div class="double-row card">
+        <div class="card">
             <h2> Unassigned Dropoffs </h2>
             <?php
                 $unassigned_result = mysqli_query($conn, "
@@ -90,7 +76,7 @@
                     echo "<td>" . $unassigned["item"] . "</td>";
                     echo "<td>" . $unassigned["actual_quantity"] . "</td>";
             ?>
-                    <td> <a href="RC_recyclableaction.php?dropoff_id=<?php echo $unassigned["dropoff_id"]; ?>"> Assign </td>
+                    <td> <button> <a href="RC_recyclableaction.php?dropoff_id=<?php echo $unassigned["dropoff_id"]; ?>"> Assign </a> </button> </td>
             <?php
                     echo "</tr>";
                 }
@@ -126,7 +112,7 @@
                     echo "<td>" . $uncompleted["item"] . "</td>";
                     echo "<td>" . $uncompleted["action"] . "</td>";
             ?>
-                    <td> Mark Complete button </td>
+                    <td> <button type="button" value="<?php echo $uncompleted['dropoff_id']; ?>" onclick="markComplete(this)"> Mark Complete </button> </td>
             <?php
                     echo "</tr>";
                 }
@@ -155,15 +141,35 @@
                 ");
 
                 echo "<table>";
-                echo "<tr><th>ID</th> <th>Item</th> <th>Material Type</th></tr>";
+                echo "<tr><th>ID</th> <th>Item</th> <th>Material Type</th> <th>Modify</th></tr>";
                 while ($unsent = mysqli_fetch_assoc($unsent_result)) {
                     echo "<tr>";
                     echo "<td>" . $unsent["dropoff_id"] . "</td>";
                     echo "<td>" . $unsent["item"] . "</td>";
                     echo "<td>" . $unsent["material_type"] . "</td>";
             ?>
-                    <td> Mark Sent Button </td>
+                    <td> <button type="button" value="<?php echo $unsent['dropoff_id']; ?>" onclick="markSent(this)"> Mark Sent </button> </td>
             <?php
+                }
+                echo "</table>";
+            ?>
+        </div>
+
+        <div class="double-column card">
+            <h2> Recyclables </h2>
+            <?php
+                $recyclables_result = mysqli_query($conn, "SELECT r.*, item FROM dropoff_recyclable r INNER JOIN dropoff on r.dropoff_id = dropoff.dropoff_id ORDER BY dropoff_id DESC;");
+
+                echo "<table>";
+                echo "<tr><th>ID</th> <th>Item</th> <th>Material Type</th> <th>Action</th> <th>Status</th></tr>";
+                while ($recyclables = mysqli_fetch_assoc($recyclables_result)) {
+                    echo "<tr>";
+                    echo "<td>" . $recyclables["dropoff_id"] . "</td>";
+                    echo "<td>" . $recyclables["item"] . "</td>";
+                    echo "<td>" . $recyclables["material_type"] . "</td>";
+                    echo "<td>" . $recyclables["action"] . "</td>";
+                    echo "<td>" . $recyclables["status"] . "</td>";
+                    echo "</tr>";
                 }
                 echo "</table>";
             ?>
