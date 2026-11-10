@@ -19,12 +19,15 @@
             margin : auto;
         }
 
-        .button {
-            border : 1px solid black;
+        .add-button {
+            border : 2px solid black;
             border-radius : 40px;
             padding : 0.5rem;
             width : fit-content;
             margin : auto;
+            background-color : #C8A96B;
+            font-size : 120%;
+            color : black;
         }
     </style>
 </head>
@@ -32,15 +35,15 @@
     <?php include "header.php" ?>
 
     <div id="content">
-        <div class="card" style="border : none;">
+        <div class="card" style="border:none; background-color:#F7F4ED;">
             <h4> New Centre ? </h4>
-            <a href="RC_addnewcentre.php"> <div class="button"> Add Record </div> </a>
+            <a href="RC_addnewcentre.php"> <div class="add-button"> Add Record </div> </a>
         </div>
         
         <div class="card">
             <h2> List of Recycling Centres </h2>
             <?php
-                echo "<table>";
+                echo "<table class='info-table'>";
                 echo "
                     <tr>
                         <th> ID </th>
@@ -60,7 +63,7 @@
                     echo "<td>" . $centres["address"] . "</td>";
                     echo "<td>" . $centres["accepted_material_type"] . "</td>";
             ?>
-                    <td> <a href="RC_editcentre.php?centre_id=<?php echo $centres['centre_id']; ?>"> Update </a> </td>
+                    <td> <button class="assign-button" type="button"> <a href="RC_editcentre.php?centre_id=<?php echo $centres['centre_id']; ?>"> Update </a> </button> </td>
             <?php
                     echo "</tr>";
                 }
@@ -68,8 +71,10 @@
                 echo "</table>";
             ?>
         </div>
-
-        
     </div>
 </body>
 </html>
+
+<?php
+    mysqli_close($conn);
+?>

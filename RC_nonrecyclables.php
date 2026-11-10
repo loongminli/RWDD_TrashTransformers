@@ -32,31 +32,46 @@ Mark Dropoff ${id} as complete ?
             grid-template-columns : repeat(2,1fr) ;
             grid-template-rows : repeat(3,1fr);
         }
+
+        @media (max-width : 768px) {
+            #content {
+                grid-template-columns : none;
+                grid-template-rows : none;
+            }
+
+            .double-column {
+                grid-column : span 1;
+            }
+        }
     </style>
+
+    
 </head>
 <body>
     <?php include "header.php" ?>
 
     <div id="content">
-        <div class="card">
+        <div class="number-box card">
             <h2> Total Unassigned Dropoffs </h2>
             <?php
                 $unassigned_result = mysqli_query($conn, "SELECT COUNT(*) FROM dropoff_nonrecyclable WHERE action = 'unassigned';");
                 $unassigned = mysqli_fetch_row($unassigned_result)[0];
 
-                echo "<p class='placeholder'> $unassigned </p>";
+                echo "<div class='number'> $unassigned </div>";
             ?>
         </div>
 
-        <div class="card">
+        <div class="number-box card">
+            <h2> Uncompleted Dropoffs </h2>
             <?php
                 $uncompleted_result = mysqli_query($conn, "SELECT COUNT(*) FROM dropoff_nonrecyclable WHERE status = 'uncompleted' AND action != 'unassigned';");
                 $uncompleted = mysqli_fetch_row($uncompleted_result)[0];
-            ?>
 
-                <h2> Uncompleted Dropoffs : </h2>
-                <p class="placeholder"> <?php echo $uncompleted; ?> </p>
+                echo "<div class='number'> $uncompleted </div>";
+            ?>
         </div>
+
+        <script src="number_color.js"></script>
 
         <div class="card">
             <h2> Unassigned Action </h2>
@@ -68,20 +83,24 @@ Mark Dropoff ${id} as complete ?
                     WHERE action = 'unassigned';
                 ");
 
-                echo "<table>";
-                echo "<tr><th>ID</th> <th>Item</th> <th>Quantity</th> <th>Modify</th></tr>";
-                while ($unassigned = mysqli_fetch_assoc($unassigned_result)) {
-                    echo "<tr>";
-                    echo "<td>" . $unassigned["dropoff_id"] . "</td>";
-                    echo "<td>" . $unassigned["item"] . "</td>";
-                    echo "<td>" . $unassigned["actual_quantity"] . "</td>";
-            ?>
-                    <td><button><a href="RC_nonrecyclableaction.php?dropoff_id=<?php echo $unassigned['dropoff_id'];?>"> Assign </a></button></td>
-            <?php
-                    echo "</tr>";
+                if (mysqli_num_rows($unassigned_result) == 0) {
+                    echo "<p class='alert'> All non-recyclables have been assigned an action! </p>";
+                } else {
+                    echo "<table class='info-table'>";
+                    echo "<tr><th>ID</th> <th>Item</th> <th>Quantity</th> <th>Modify</th></tr>";
+                    while ($unassigned = mysqli_fetch_assoc($unassigned_result)) {
+                        echo "<tr>";
+                        echo "<td>" . $unassigned["dropoff_id"] . "</td>";
+                        echo "<td>" . $unassigned["item"] . "</td>";
+                        echo "<td>" . $unassigned["actual_quantity"] . "</td>";
+                ?>
+                        <td><button class = "assign-button"><a href="RC_nonrecyclableaction.php?dropoff_id=<?php echo $unassigned['dropoff_id'];?>"> Assign </a></button></td>
+                <?php
+                        echo "</tr>";
+                    }
+                    echo "</table>";
                 }
-                echo "</table>";
-            ?>
+                ?>
         </div>
 
         <div class="card">
@@ -94,20 +113,24 @@ Mark Dropoff ${id} as complete ?
                     WHERE status = 'uncompleted' AND action != 'unassigned';
                 ");
 
-                echo "<table>";
-                echo "<tr><th>ID</th> <th>Item</th> <th>Action</th> <th>Modify</th></tr>";
-                while ($uncompleted = mysqli_fetch_assoc($uncompleted_result)) {
-                    echo "<tr>";
-                    echo "<td>" . $uncompleted["dropoff_id"] . "</td>";
-                    echo "<td>" . $uncompleted["item"] . "</td>";
-                    echo "<td>" . $uncompleted["action"] . "</td>";
-            ?>
-                    <td> <button type="button" value="<?php echo $uncompleted['dropoff_id']; ?>" onclick="markComplete(this)"> Mark Complete </button> </td>
-            <?php
-                    echo "</tr>";
+                if (mysqli_num_rows($uncompleted_result) == 0) {
+                    echo "<p class='alert'> All non-recyclables have successfully been processed! </p>";
+                } else {
+                    echo "<table class='info-table'>";
+                    echo "<tr><th>ID</th> <th>Item</th> <th>Action</th> <th>Modify</th></tr>";
+                    while ($uncompleted = mysqli_fetch_assoc($uncompleted_result)) {
+                        echo "<tr>";
+                        echo "<td>" . $uncompleted["dropoff_id"] . "</td>";
+                        echo "<td>" . $uncompleted["item"] . "</td>";
+                        echo "<td>" . $uncompleted["action"] . "</td>";
+                ?>
+                        <td> <button class="mark-button" type="button" value="<?php echo $uncompleted['dropoff_id']; ?>" onclick="markComplete(this)"> Mark Complete </button> </td>
+                <?php
+                        echo "</tr>";
+                    }
+                    echo "</table>";
                 }
-                echo "</table>";
-            ?>
+                ?>
         </div>
         
         <div class="double-column card">
@@ -119,7 +142,7 @@ Mark Dropoff ${id} as complete ?
                     ORDER BY dropoff_id DESC;
                 ");
 
-                echo "<table>";
+                echo "<table class='info-table'>";
                 echo "<tr><th>ID</th> <th>Item</th> <th>Action</th> <th>Status</th></tr>";
                 while ($nonrecyclable = mysqli_fetch_assoc($nonrecyclable_result)){
                     echo "<tr>";
@@ -135,3 +158,7 @@ Mark Dropoff ${id} as complete ?
     </div>
 </body>
 </html>
+
+<?php
+    mysqli_close($conn);
+?>
