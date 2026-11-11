@@ -20,15 +20,17 @@
             grid-template-columns : 40% 60%;
         }
 
-        .unassigned-box {
+        .batches {
             display : flex;
             margin : 1rem auto;
-            height : 3rem;
-            width : 3rem;
-            border : 1px solid black;
+            height : 5rem;
+            width : 5rem;
+            border : 3px solid black;
             border-radius : 5px;
             align-items : center;
             justify-content : center;
+            font-size : 200%;
+            background-color : white;
         }
 
         .material {
@@ -59,7 +61,7 @@
         <div class="double-column card">
             <h2> Checked Dropoffs with Needed Action </h2>
             <div id="unassigned">
-                <div class="unassigned-box">
+                <div class="number">
                     <?php
                         $unassigned_r_result = mysqli_query($conn, "SELECT COUNT(*) FROM dropoff_recyclable WHERE action = 'unassigned';");
                         $unassigned_nr_result = mysqli_query($conn, "SELECT COUNT(*) FROM dropoff_nonrecyclable WHERE action = 'unassigned';");
@@ -71,6 +73,8 @@
                         echo "<p> $total_unassigned </p>";
                     ?>
                 </div>
+
+                <script src="number_color.js"></script>
 
                 <div>
                     <h4> Unassigned Dropoffs </h4>
@@ -88,13 +92,13 @@
                             WHERE action = 'unassigned';"
                         );
 
-                        echo "<table>";
+                        echo "<table class='info-table'>";
                         echo "<tr> <th>ID</th> <th>Item</th> <th>Quantity</th> </tr>";
                         
                         while ($unassigned_r = mysqli_fetch_assoc($unassigned_r_result)) {
                             echo "<tr>";
                             echo "<td>" . $unassigned_r['dropoff_id'] . "</td>";
-                            echo "<td>" . $unassigned_r['item'] . "</td>";
+                            echo "<td> <a href='RC_recyclables.php'>" . $unassigned_r['item'] . "</a> </td>";
                             echo "<td>" . $unassigned_r['actual_quantity'] . "</td>";
                             echo "</tr>";
                         }
@@ -102,7 +106,7 @@
                         while ($unassigned_nr = mysqli_fetch_assoc($unassigned_nr_result)) {
                             echo "<tr>";
                             echo "<td>" . $unassigned_nr['dropoff_id'] . "</td>";
-                            echo "<td>" . $unassigned_nr['item'] . "</td>";
+                            echo "<td> <a href='RC_nonrecyclables.php'>" . $unassigned_nr['item'] . "</a> </td>";
                             echo "<td>" . $unassigned_nr['actual_quantity'] . "</td>";
                             echo "</tr>";
                         }
@@ -134,12 +138,12 @@
                                 <option value="10"> October </option>
                                 <option value="11"> November </option>
                                 <option value="12"> December </option>
-                            </select>
+                            </select> 2026
                         </form>
                     </td>
                 </tr>
             </table>
-            <span id="total_batches" class="placeholder">  </span>
+            <span id="total_batches" class="batches">  </span>
 
             <!-- i have never made a smarter code than below -->
             <script>
@@ -176,26 +180,26 @@
                 $others = mysqli_fetch_row($others_result)[0];
             ?>
 
-            <table>
+            <table class='info-table'>
                 <tr>
-                    <th class="material"> Paper : </th>
-                    <td class="placeholder"> <?php echo $paper ?> </td>
+                    <th class="material"> Paper </th>
+                    <td> <?php echo $paper ?> </td>
                 </tr>
                 <tr>
-                    <th class="material"> Plastic : </th>
-                    <td class="placeholder"> <?php echo $plastic ?> </td>
+                    <th class="material"> Plastic </th>
+                    <td> <?php echo $plastic ?> </td>
                 </tr>
                 <tr>
-                    <th class="material"> Glass : </th>
-                    <td class="placeholder"> <?php echo $glass ?> </td>
+                    <th class="material"> Glass </th>
+                    <td> <?php echo $glass ?> </td>
                 </tr>
                 <tr>
-                    <th class="material"> Aluminium : </th>
-                    <td class="placeholder"> <?php echo $aluminium ?> </td>
+                    <th class="material"> Aluminium </th>
+                    <td> <?php echo $aluminium ?> </td>
                 </tr>
                 <tr>
-                    <th class="material"> Others : </th>
-                    <td class="placeholder"> <?php echo $others ?> </td>
+                    <th class="material"> Others </th>
+                    <td> <?php echo $others ?> </td>
                 </tr>
             </table>
         </div>

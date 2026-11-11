@@ -1,6 +1,6 @@
 <header>
     <div class="logo placeholder"> 
-        logo
+        <img src="logo.png" style="border-radius:100%; width:100%; height:100%;">
     </div>
     
     <div id="menu">

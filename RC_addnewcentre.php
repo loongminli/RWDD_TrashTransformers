@@ -26,52 +26,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Add New Centre </title>
     <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <a href="RC_recyclingcentre.php"> Back </a>
+    <style>
+        #content {
+            align-items : center;
+            justify-content : center;
+            padding : 3rem;
+        }
+
+        a {
+            margin : auto;
+        }
+
+        .card {
+            margin : 3rem;
+            width : fit-content;
+        }
+
+        #addForm input[type=text]{
+            height : 2rem;
+            width : 40rem;
+        }
+
+        #addForm textarea {
+            height : 5rem;
+            width : 40rem;
+        }
+
+        table td, th {
+            padding : 0.5rem;
+        }
+
+        table th {
+            text-align : right;
+        }
+
+        @media (max-width : 786px) {
+            #content {
+                padding : 0;
+                padding-top : 3rem;
+            }
+
+            .card {
+                margin : 1rem;
+            }
+
+            .form input[type=text]{
+                height : 5rem;
+                width : 10rem;
+            }
+
+            .form textarea {
+                height : 10rem;
+                width : 10rem;
+            }
+        }
+    </style>
 
     <script>
-
+        function resetFields() {
+            document.getElementById("errorName").textContent = "";
+            document.getElementById("errorAddress").textContent = "";
+            document.getElementById("errorMaterial").textContent = "";
+        }
     </script>
-    
-    <form id="addForm" method="post">
-        <table>
-            <tr>
-                <td> Centre Name : </td>
-                <td>
-                    <input type="text" name="name" id="name" required> <br>
-                    <span id="errorName"></span>
-                </td>
-            </tr>
+</head>
+<body>
+    <div id="content">
+        <a href="RC_recyclingcentre.php"> <div class = "back-button"> Back </div> </a>
 
-            <tr>
-                <td> Centre Address : </td>
-                <td>
-                    <textarea type="text" name="address" id="address" required></textarea> <br>
-                    <span id="errorAddress"></span>
-                </td>
-            </tr>
+        <div class="card">
+            <form id="addForm" method="post">
+                <table>
+                    <tr>
+                        <th> Centre Name </th>
+                        <td>
+                            <input type="text" name="name" id="name" required> <br>
+                            <span id="errorName" class="error"></span>
+                        </td>
+                    </tr>
 
-            <tr>
-                <td> Material Type Accepted : </td>
-                <td>
-                    <input type="radio" name="material_type" id="material_type" value="all" required> All <br>
-                    <input type="radio" name="material_type" id="material_type" value="paper"> Paper <br>
-                    <input type="radio" name="material_type" id="material_type" value="plastic"> Plastic <br>
-                    <input type="radio" name="material_type" id="material_type" value="glass"> Glass <br>
-                    <input type="radio" name="material_type" id="material_type" value="aluminium"> Aluminium <br>
-                    <span id="errorMaterial"></span>
-                </td>
-            </tr>
-            
-            <tr>
-                <td>
-                    <input type="reset" value="Reset">
-                    <button type="button" id="btnAdd"> Add </div>
-                </td>
-            </tr>
-        </table>
-    </form>
+                    <tr>
+                        <th> Centre Address </th>
+                        <td>
+                            <textarea type="text" name="address" id="address" required></textarea> <br>
+                            <span id="errorAddress" class="error"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th> Material Type Accepted </th>
+                        <td>
+                            <input type="radio" name="material_type" id="material_type" value="all" required> All <br>
+                            <input type="radio" name="material_type" id="material_type" value="paper"> Paper <br>
+                            <input type="radio" name="material_type" id="material_type" value="plastic"> Plastic <br>
+                            <input type="radio" name="material_type" id="material_type" value="glass"> Glass <br>
+                            <input type="radio" name="material_type" id="material_type" value="aluminium"> Aluminium <br>
+                            <span id="errorMaterial" class="error"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td> </td>
+                        <td>   
+                            <br> <br>
+                            <input class="button" type="reset" value="Reset" onclick="resetFields()">
+                            <button class="button" type="button" id="btnAdd"> Add </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
     
     <script>
         document.getElementById("btnAdd").addEventListener("click", function () {
@@ -100,3 +165,7 @@ Material Type Accepted : ${material}
     </script>
 </body>
 </html>
+
+<?php
+    mysqli_close($conn);
+?>
