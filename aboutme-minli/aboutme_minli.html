@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me : Loong Min Li</title>
+
+    <style>
+        * {
+            font-family : 'Courier New', Courier, monospace;
+            margin : 0;
+            padding : 0;
+            box-sizing : border-box;
+        }
+
+        body {
+            background-color : #F3E4C9;
+        }
+
+        h1, h2, h3 {
+            text-align : center;
+        }
+
+        .title {
+            text-decoration : underline;
+            color : #8B5E3C;
+        }
+
+        #content {
+            display : flex;
+            flex-direction : column;
+            padding : 3rem;
+            align-items : center;
+            justify-content : center;
+        }
+
+        #cards {
+            display : grid;
+            align-items : center;
+            grid-template-columns : repeat(2, 1fr);
+        }
+
+        .card {
+            margin : 1rem;
+            border : 4px dotted #0A2947;
+            border-radius : 5px;
+            background-color : #D3D4C0;
+            padding-bottom : 3rem;
+            align-items : center;
+        }
+
+        .double-column {
+            grid-column : span 2;
+        }
+
+        #pfp {
+            width : 200px;
+            height : 200px;
+            border : 2px solid black;
+            border-radius : 100%;
+        }
+
+        .socmeds {
+            display : grid;
+            gap : 2rem;
+        }
+
+        @media (max-width : 768px) {
+            #content {
+                padding : 1rem;
+            }
+
+            #cards {
+                grid-template-columns : none;
+            }
+
+            .double-column {
+                grid-column : span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <img id="pfp" src="minli.jpg" alt="min li">
+        <h1> Loong Min Li </h1>
+        <h3> A second year computer science major. </h3>
+        <h3> You can address me as <em>Min Li</em> ! </h3>
+
+        <div id="cards">
+            <div class="card">
+                <h2 class="title"> Education </h2>
+                <table>
+                    <tr>
+                        <th>Year</th>
+                        <th>Education</th>
+                    </tr>
+                    <tr>
+                        <td>2025-current</td> <td>Asia Pacific University of Technology & Innovation (APU)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2 class="title"> What I Like </h2>
+            </div>
+
+            <div class="double-column card">
+                <h2 class="title"> Connect with Me ! </h2>
+                <a href="mailto:loongminli@gmail.com"> <img src="gmail.png" alt="gmail"> </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
