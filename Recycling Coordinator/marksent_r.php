@@ -1,5 +1,5 @@
 <?php
-    include "dbconn.php";
+    include "../dbconn.php";
 
     $id = $_GET["dropoff_id"];
 

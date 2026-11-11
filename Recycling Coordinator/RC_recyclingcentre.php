@@ -1,5 +1,5 @@
 <?php
-    include "dbconn.php";
+    include "../dbconn.php";
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +47,7 @@
                 echo "<table class='info-table'>";
                 echo "<tr><th>ID</th> <th> Name </th> <th>Address</th> <th>Material Accepted</th> <th>Modify</th></tr>";
                 
-                $centres_result = mysqli_query($conn, "SELECT * FROM recyclingcentre;");
+                $centres_result = mysqli_query($conn, "SELECT * FROM recyclingcentre ORDER BY centre_id DESC;");
                 
                 while ($centres = mysqli_fetch_assoc($centres_result)) {
                     echo "<tr>";
