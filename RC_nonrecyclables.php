@@ -64,7 +64,7 @@ Mark Dropoff ${id} as complete ?
         <div class="number-box card">
             <h2> Uncompleted Dropoffs </h2>
             <?php
-                $uncompleted_result = mysqli_query($conn, "SELECT COUNT(*) FROM dropoff_nonrecyclable WHERE status = 'uncompleted' AND action != 'unassigned';");
+                $uncompleted_result = mysqli_query($conn, "SELECT COUNT(*) FROM dropoff_nonrecyclable WHERE status = 'incomplete' AND action != 'unassigned';");
                 $uncompleted = mysqli_fetch_row($uncompleted_result)[0];
 
                 echo "<div class='number'> $uncompleted </div>";
@@ -110,7 +110,7 @@ Mark Dropoff ${id} as complete ?
                     SELECT nr.dropoff_id, item, action FROM dropoff_nonrecyclable nr
                     INNER JOIN dropoff on nr.dropoff_id = dropoff.dropoff_id
                     INNER JOIN dropoff_check on nr.dropoff_id = dropoff_check.dropoff_id
-                    WHERE status = 'uncompleted' AND action != 'unassigned';
+                    WHERE status = 'incomplete' AND action != 'unassigned';
                 ");
 
                 if (mysqli_num_rows($uncompleted_result) == 0) {
