@@ -68,9 +68,9 @@
             $checkdropoff_result = mysqli_query($conn, "SELECT * FROM dropoff_nonrecyclable WHERE dropoff_id = '$id'");
             $checkassign_result = mysqli_query($conn, "SELECT dropoff_id from dropoff_nonrecyclable WHERE dropoff_id = '$id' AND action != 'unassigned';");
 
-            if (mysqli_num_rows($checkassign_result) == 1) { //1 means we are trying to assign something to something already assigned
+            if (mysqli_num_rows($checkassign_result) == 1) { 
                 echo "<script> alert('The dropoff already has an action assigned.'); window.location.href = 'RC_nonrecyclables.php'; </script>";
-            } elseif (mysqli_num_rows($checkdropoff_result) == 0) { //0 means it doesn't exist in database
+            } elseif (mysqli_num_rows($checkdropoff_result) == 0) { 
                 echo "<script> alert('The dropoff you are trying to access does not exist or is a recyclable.'); window.location.href = 'RC_nonrecyclables.php'; </script>";
             } else {
                 $dropoffinfo_result = mysqli_query($conn, "

@@ -1,5 +1,5 @@
 <?php
     session_start();
-    session_destroy(); //remove all data from the session
+    session_destroy();
     header("Location: index.php");
 ?>

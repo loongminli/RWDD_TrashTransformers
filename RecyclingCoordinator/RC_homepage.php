@@ -38,8 +38,8 @@
         }
 
         #content {
-            grid-template-columns : repeat(2, 1fr); /* two columns, equal in size*/
-            grid-template-rows : repeat(2); /* two rows */
+            grid-template-columns : repeat(2, 1fr);
+            grid-template-rows : repeat(2);
         }
 
         @media (max-width : 768px) {
@@ -69,7 +69,7 @@
                         $unassigned_r = mysqli_fetch_row($unassigned_r_result);
                         $unassigned_nr = mysqli_fetch_row($unassigned_nr_result);
 
-                        $total_unassigned = $unassigned_r[0] + $unassigned_nr[0]; /* using row cuz theres just one result */
+                        $total_unassigned = $unassigned_r[0] + $unassigned_nr[0];
                         echo "<p> $total_unassigned </p>";
                     ?>
                 </div>
@@ -145,7 +145,6 @@
             </table>
             <span id="total_batches" class="batches">  </span>
 
-            <!-- i have never made a smarter code than below -->
             <script>
                 document.getElementById("dropdownMonth").addEventListener("change", function () {
                     document.getElementById("monthForm").submit();

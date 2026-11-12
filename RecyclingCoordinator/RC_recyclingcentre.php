@@ -13,7 +13,7 @@
     <style>
         #content {
             align-items : center;
-            grid-template-rows : repeat(2); /* two rows */
+            grid-template-rows : repeat(2);
         }
 
         table {

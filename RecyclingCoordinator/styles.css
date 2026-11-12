@@ -1,8 +1,3 @@
-.placeholder {
-    color : red;
-    text-align : center;
-}
-
 * {
     font-family :'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin : 0;
@@ -35,7 +30,7 @@ header {
     flex-direction: row;
     align-items : center;
     position : center;
-    margin : auto; /*makes the menu bar look like spiderman pulling the train tgt --O--*/
+    margin : auto;
 }
 
 #profile {
@@ -148,10 +143,9 @@ a {
 }
 
 .menu-option {
-    /*must declare a height and width to not let it expand along*/
     height : 2.5rem;
     width : 13rem;
-    padding : 0.5rem; /*using rem prevents the div from expanding along*/
+    padding : 0.5rem;
     margin : 1rem;
     display : flex;
     border : 2px solid black;
@@ -181,7 +175,7 @@ a {
 #hamburger-menu-icon {
     margin : auto;
     border : 2px solid black;
-    display : none; /* makes it invisible until screen size goes to ipad or phone */
+    display : none;
     flex-direction : column;
     cursor : pointer;
 }
