@@ -13,6 +13,8 @@
         }
         
         #content {
+            display : flex;
+            flex-direction : column;
             padding : 3rem;
             align-items : center;
             justify-content : center;
@@ -42,6 +44,8 @@
         }
 
         .card {
+            display : flex;
+            flex-direction : column;
             margin : 1rem;
             border : 8px solid #8FA28A;
             border-radius : 20px;
@@ -57,6 +61,16 @@
             margin : 1rem;
         }
 
+        .homepage-button {
+            background-color : #C8A96B;
+            border : 2px solid #9a814f;
+            border-radius : 5px;
+            color : black;
+            text-decoration : none;
+            padding : 0.3rem;
+            margin-bottom : 3rem;
+        }
+
         @media (max-width : 768px) {
             #cards {
                 grid-template-columns : none;
@@ -66,14 +80,40 @@
 </head>
 <body>
     <div id="content">
-        <h1> Meet Group 32 </h1>
+        <a class="homepage-button" href="index.php"> Return to Homepage </a>
+
+        <h1> Meet Our Team </h1>
 
         <div id="cards">
             <div class="card" onclick="window.location.href='LINK HERE'">
                 <img src="logo.png" alt="NAMEEEEE" class="pfp">
                 <div class="info">
                     <h2> Administrator </h2>
-                    <h3> Nameeeee </h3>
+                    <h3> Gan Yu Xuan </h3>
+                </div>
+            </div>
+
+            <div class="card" onclick="window.location.href='LINK HERE'">
+                <img src="logo.png" alt="NAMEEEEE" class="pfp">
+                <div class="info">
+                    <h2> Collector </h2>
+                    <h3> Wong Yan Qi </h3>
+                </div>
+            </div>
+
+            <div class="card" onclick="window.location.href='aboutme-minli/aboutme_minli.php'">
+                <img src="aboutme-minli/minli.jpg" alt="minli" class="pfp">
+                <div class="info">
+                    <h2> Recycling Coordinator </h2>
+                    <h3> Loong Min Li </h3>
+                </div>
+            </div>
+
+            <div class="card" onclick="window.location.href='LINK HERE'">
+                <img src="logo.png" alt="NAMEEEEE" class="pfp">
+                <div class="info">
+                    <h2> User </h2>
+                    <h3> Maryam Rehman </h3>
                 </div>
             </div>
         </div>

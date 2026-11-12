@@ -74,6 +74,10 @@
             border-radius : 100%;
         }
 
+        a {
+            text-decoration : none;
+        }
+        
         .back-button {
             border : 2px solid black;
             border-radius : 10px;
@@ -130,7 +134,7 @@
 </head>
 <body>
     <div id="content">
-        <a href = "index.php"> <div class="back-button"> Back </div> </a>
+        <a href = "../meetourteam.php"> <div class="back-button"> Back </div> </a>
         <img id="pfp" src="minli.jpg" alt="min li">
         <h1> Loong Min Li </h1>
         <h3> A second year computer science major. </h3>
