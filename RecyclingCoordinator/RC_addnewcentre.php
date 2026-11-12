@@ -29,13 +29,11 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         #content {
+            display : flex;
+            flex-direction : column;
             align-items : center;
             justify-content : center;
             padding : 3rem;
-        }
-
-        a {
-            margin : auto;
         }
 
         .card {
@@ -69,14 +67,15 @@
 
             .card {
                 margin : 1rem;
+                width : 80%;
             }
 
-            .form input[type=text]{
+            #addForm input[type=text]{
                 height : 5rem;
                 width : 10rem;
             }
 
-            .form textarea {
+            #addForm textarea {
                 height : 10rem;
                 width : 10rem;
             }

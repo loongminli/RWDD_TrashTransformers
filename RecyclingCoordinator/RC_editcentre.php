@@ -35,13 +35,11 @@
 
     <style>
         #content {
+            display : flex;
+            flex-direction : column;
             align-items : center;
             justify-content : center;
             padding : 3rem;
-        }
-
-        a {
-            margin : auto;
         }
 
         .card {
@@ -68,12 +66,22 @@
         }
 
         @media (max-width : 768px) {
-            #addForm input[type=text]{
+            #content {
+                padding : 0;
+                padding-top : 3rem;
+            }
+
+            .card {
+                margin : 1rem;
+                width : 80%;
+            }
+
+            #updateForm input[type=text]{
                 height : 5rem;
                 width : 10rem;
             }
 
-            #addForm textarea {
+            #updateForm textarea {
                 height : 10rem;
                 width : 10rem;
             }
