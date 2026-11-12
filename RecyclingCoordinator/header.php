@@ -27,13 +27,8 @@
     <div id="profile">
         <div> 
             <?php 
-                if ($_SESSION["role"] === "Coordinator") { 
-                    $name = $_SESSION["name"];
-                    echo "<h3> $name </h3>"; 
-                } else {
-                    echo "<script> alert('You do not have permission to access these pages.'); window.location.href = '../index.php'; </script>";
-                }
-            ?> 
+                echo "<h3> $name </h3>"; 
+            ?>
         </div>
         <div class="pfp"> <img id="pfp" src="../pfp.png" alt="pfp" style="border-radius:100%; width:100%; height:100%;"> </div>
         <div id="staff-actions">

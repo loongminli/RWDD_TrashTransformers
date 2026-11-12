@@ -1,5 +1,6 @@
 <?php
     include "../dbconn.php";
+    include "checkaccess.php";
 ?>
 
 <script>
