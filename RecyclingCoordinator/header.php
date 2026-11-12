@@ -1,6 +1,6 @@
 <header>
     <div class="logo"> 
-        <img src="../logo.png" style="border-radius:100%; width:100%; height:100%;" alt="logo">
+        <a href = "../index.php"> <img src="../logo.png" style="border-radius:100%; width:100%; height:100%;" alt="logo"> </a>
     </div>
     
     <div id="menu">
@@ -50,7 +50,7 @@
             confirmLogout = confirm("Are you sure you want to logout?");
 
             if (confirmLogout) {
-                window.location.href = "../staff_login.php";
+                window.location.href = "../logout.php";
             }
         })
     </script>
