@@ -3,8 +3,8 @@
     include "checkaccess.php";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = $_POST["name"];
-        $address = $_POST["address"];
+        $name = trim($_POST["name"]);
+        $address = trim($_POST["address"]);
         $material = $_POST["material_type"];
 
         $insert = mysqli_query($conn,"
