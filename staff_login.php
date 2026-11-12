@@ -52,12 +52,12 @@
             <table>
                 <tr>
                     <th> Staff ID </th>
-                    <td> <input type="text" name="staff_id"> </td>
+                    <td> <input type="text" name="staff_id" autofocus required> </td>
                 </tr>
 
                 <tr>
                     <th> Password </th>
-                    <td> <input type="password" name="password"> </td>
+                    <td> <input type="password" name="password" required> </td>
                 </tr>
 
                 <tr>

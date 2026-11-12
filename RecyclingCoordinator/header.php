@@ -1,6 +1,6 @@
 <header>
     <div class="logo"> 
-        <img src="../logo.png" style="border-radius:100%; width:100%; height:100%;">
+        <img src="../logo.png" style="border-radius:100%; width:100%; height:100%;" alt="logo">
     </div>
     
     <div id="menu">
@@ -24,15 +24,39 @@
         </div>
     </div>
 
-    <div id="profile" class="placeholder">
-        <div> name </div>
-        <div> pfp </div>
+    <div id="profile">
+        <div> 
+            <?php 
+                if ($_SESSION["role"] === "Coordinator") { 
+                    $name = $_SESSION["name"];
+                    echo "<h3> $name </h3>"; 
+                } else {
+                    echo "<script> alert('You do not have permission to access these pages.'); window.location.href = '../index.php'; </script>";
+                }
+            ?> 
+        </div>
+        <div class="pfp"> <img id="pfp" src="../pfp.png" alt="pfp" style="border-radius:100%; width:100%; height:100%;"> </div>
+        <div id="staff-actions">
+            <div id="homepage-button" onclick="window.location.href='RC_homepage.php'"> Coordinator Homepage </div>
+            <div id="logout-button"> Logout </div> 
+        </div>
     </div>
 
     <script>
         document.getElementById("hamburger-menu-icon").addEventListener("click", function () {
             document.getElementById("menu-options").classList.toggle("active");
-            this.classList.toggle("active");
         });
+
+        document.getElementById("pfp").addEventListener("click", function () {
+            document.getElementById("staff-actions").classList.toggle("active");
+        })
+
+        document.getElementById("logout-button").addEventListener("click", function () {
+            confirmLogout = confirm("Are you sure you want to logout?");
+
+            if (confirmLogout) {
+                window.location.href = "../staff_login.php";
+            }
+        })
     </script>
 </header>
