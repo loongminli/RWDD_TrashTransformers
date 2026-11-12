@@ -135,22 +135,47 @@ Mark Dropoff ${id} as complete ?
         
         <div class="double-column card">
             <h2> Non-recyclables </h2>
-            <?php
-                $nonrecyclable_result = mysqli_query($conn,"
-                    SELECT nr.*, item FROM dropoff_nonrecyclable nr
-                    INNER JOIN dropoff ON nr.dropoff_id = dropoff.dropoff_id
-                    ORDER BY dropoff_id DESC;
-                ");
+            <form id="searchBar" method="get">
+                <input type="text" name="itemSearched" placeholder="Search by Item Name">
+                <input type="submit" name="btnSearch" value="Search">
+            </form>
 
+            <?php
                 echo "<table class='info-table'>";
                 echo "<tr><th>ID</th> <th>Item</th> <th>Action</th> <th>Status</th></tr>";
-                while ($nonrecyclable = mysqli_fetch_assoc($nonrecyclable_result)){
-                    echo "<tr>";
-                    echo "<td>" . $nonrecyclable["dropoff_id"] . "</td>";
-                    echo "<td>" . $nonrecyclable["item"] . "</td>";
-                    echo "<td>" . $nonrecyclable["action"] . "</td>";
-                    echo "<td>" . $nonrecyclable["status"] . "</td>";
-                    echo "</tr>";
+                if (isset($_GET["btnSearch"])) {
+                    $item_searched = $_GET["itemSearched"];
+
+                    $nonrecyclable_search_result = mysqli_query($conn, "
+                        SELECT nr.*, item FROM dropoff_nonrecyclable nr
+                        INNER JOIN dropoff ON nr.dropoff_id = dropoff.dropoff_id
+                        WHERE item LIKE '%$item_searched%'
+                        ORDER BY nr.dropoff_id DESC;
+                    ");
+
+                    while ($nonrecyclable_search = mysqli_fetch_assoc($nonrecyclable_search_result)){
+                        echo "<tr>";
+                        echo "<td>" . $nonrecyclable_search["dropoff_id"] . "</td>";
+                        echo "<td>" . $nonrecyclable_search["item"] . "</td>";
+                        echo "<td>" . $nonrecyclable_search["action"] . "</td>";
+                        echo "<td>" . $nonrecyclable_search["status"] . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    $nonrecyclable_result = mysqli_query($conn,"
+                        SELECT nr.*, item FROM dropoff_nonrecyclable nr
+                        INNER JOIN dropoff ON nr.dropoff_id = dropoff.dropoff_id
+                        ORDER BY nr.dropoff_id DESC;
+                    ");
+
+                    while ($nonrecyclable = mysqli_fetch_assoc($nonrecyclable_result)){
+                        echo "<tr>";
+                        echo "<td>" . $nonrecyclable["dropoff_id"] . "</td>";
+                        echo "<td>" . $nonrecyclable["item"] . "</td>";
+                        echo "<td>" . $nonrecyclable["action"] . "</td>";
+                        echo "<td>" . $nonrecyclable["status"] . "</td>";
+                        echo "</tr>";
+                    }
                 }
                 echo "</table>";
             ?>
