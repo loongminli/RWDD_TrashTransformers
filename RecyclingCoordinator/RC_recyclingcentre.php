@@ -49,45 +49,29 @@
             </form>
             
             <?php
+                if (isset($_GET["btnSearch"])) {
+                    $searched = $_GET["centreSearched"];
+                } else {
+                    $searched = "";
+                }
+
                 echo "<table class='info-table'>";
                 echo "<tr><th>ID</th> <th> Name </th> <th>Address</th> <th>Material Accepted</th> <th>Modify</th></tr>";
 
-                if (isset($_GET["btnSearch"])) {
-                    $centre_searched = $_GET["centreSearched"];
-
-                    $centres_search_result = mysqli_query($conn, "
-                        SELECT * FROM recyclingcentre
-                        WHERE name LIKE '%$centre_searched%'
-                        ORDER BY centre_id DESC;
-                    ");
-
-                    while ($centres_search = mysqli_fetch_assoc($centres_search_result)) {
-                        echo "<tr>";
-                        echo "<td>" . $centres_search["centre_id"] . "</td>";
-                        echo "<td>" . $centres_search["name"] . "</td>";
-                        echo "<td>" . $centres_search["address"] . "</td>";
-                        echo "<td>" . $centres_search["accepted_material_type"] . "</td>";
-            ?>
-                        <td> <button class="assign-button" type="button"> <a href="RC_editcentre.php?centre_id=<?php echo $centres_search['centre_id']; ?>"> Update </a> </button> </td>
-            <?php
-                        echo "</tr>";
-                    }
-                } else {
+                $centres_result = mysqli_query($conn, "SELECT * FROM recyclingcentre WHERE name LIKE '%$searched%' ORDER BY centre_id DESC;");
                 
-                    $centres_result = mysqli_query($conn, "SELECT * FROM recyclingcentre ORDER BY centre_id DESC;");
-                    
-                    while ($centres = mysqli_fetch_assoc($centres_result)) {
-                        echo "<tr>";
-                        echo "<td>" . $centres["centre_id"] . "</td>";
-                        echo "<td>" . $centres["name"] . "</td>";
-                        echo "<td>" . $centres["address"] . "</td>";
-                        echo "<td>" . $centres["accepted_material_type"] . "</td>";
+                while ($centres = mysqli_fetch_assoc($centres_result)) {
+                    echo "<tr>";
+                    echo "<td>" . $centres["centre_id"] . "</td>";
+                    echo "<td>" . $centres["name"] . "</td>";
+                    echo "<td>" . $centres["address"] . "</td>";
+                    echo "<td>" . $centres["accepted_material_type"] . "</td>";
             ?>
-                        <td> <button class="assign-button" type="button"> <a href="RC_editcentre.php?centre_id=<?php echo $centres['centre_id']; ?>"> Update </a> </button> </td>
+                    <td> <button class="assign-button" type="button"> <a href="RC_editcentre.php?centre_id=<?php echo $centres['centre_id']; ?>"> Update </a> </button> </td>
             <?php
-                        echo "</tr>";
-                    }
+                    echo "</tr>";
                 }
+                
 
                 echo "</table>";
             ?>

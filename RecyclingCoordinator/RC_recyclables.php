@@ -243,44 +243,32 @@ Mark Dropoff ${id} as sent ?
             </form>
 
             <?php
+                if (isset($_GET["btnSearch"])) {
+                    $searched = $_GET["itemSearched"];
+                } else {
+                    $searched = "";
+                }
+
                 echo "<table class = 'info-table'>";
                 echo "<tr><th>ID</th> <th>Item</th> <th>Material Type</th> <th>Action</th> <th>Status</th></tr>";
-                if (isset($_GET["btnSearch"])) {
-                    $item_searched = $_GET["itemSearched"];
+                
+                $recyclables_result = mysqli_query($conn, "
+                    SELECT r.*, item FROM dropoff_recyclable r 
+                    INNER JOIN dropoff on r.dropoff_id = dropoff.dropoff_id 
+                    WHERE item LIKE '%$searched%'
+                    ORDER BY r.dropoff_id DESC;
+                ");
 
-                    $recyclables_search_result = mysqli_query($conn, "
-                        SELECT r.*, item FROM dropoff_recyclable r 
-                        INNER JOIN dropoff on r.dropoff_id = dropoff.dropoff_id 
-                        WHERE item LIKE '%$item_searched%'
-                        ORDER BY r.dropoff_id DESC;
-                    ");
-
-                    while ($recyclables_search = mysqli_fetch_assoc($recyclables_search_result)) {
-                        echo "<tr>";
-                        echo "<td>" . $recyclables_search["dropoff_id"] . "</td>";
-                        echo "<td>" . $recyclables_search["item"] . "</td>";
-                        echo "<td>" . $recyclables_search["material_type"] . "</td>";
-                        echo "<td>" . $recyclables_search["action"] . "</td>";
-                        echo "<td>" . $recyclables_search["status"] . "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    $recyclables_result = mysqli_query($conn, "
-                        SELECT r.*, item FROM dropoff_recyclable r 
-                        INNER JOIN dropoff on r.dropoff_id = dropoff.dropoff_id 
-                        ORDER BY r.dropoff_id DESC;
-                    ");
-
-                    while ($recyclables = mysqli_fetch_assoc($recyclables_result)) {
-                        echo "<tr>";
-                        echo "<td>" . $recyclables["dropoff_id"] . "</td>";
-                        echo "<td>" . $recyclables["item"] . "</td>";
-                        echo "<td>" . $recyclables["material_type"] . "</td>";
-                        echo "<td>" . $recyclables["action"] . "</td>";
-                        echo "<td>" . $recyclables["status"] . "</td>";
-                        echo "</tr>";
-                    }
+                while ($recyclables = mysqli_fetch_assoc($recyclables_result)) {
+                    echo "<tr>";
+                    echo "<td>" . $recyclables["dropoff_id"] . "</td>";
+                    echo "<td>" . $recyclables["item"] . "</td>";
+                    echo "<td>" . $recyclables["material_type"] . "</td>";
+                    echo "<td>" . $recyclables["action"] . "</td>";
+                    echo "<td>" . $recyclables["status"] . "</td>";
+                    echo "</tr>";
                 }
+
                 echo "</table>";
             ?>
         </div>
