@@ -1,5 +1,5 @@
 <header class="admin-header">
-    <img src="logo.png" alt="Trash Transformers Logo" class="logo">
+    <a href="../index.php"> <img src="../logo.png" alt="Trash Transformers Logo" class="logo"> </a>
     <h2>Trash Transformers</h2>
 </header>
 
@@ -10,4 +10,5 @@
     <a href="challenge_manage.php">Challenges</a>
     <a href="reward_manage.php">Rewards</a>
     <a href="challenge_reward_manage.php">Challenge Rewards</a>
+    <a href="../logout.php"> Logout </a>
 </nav>

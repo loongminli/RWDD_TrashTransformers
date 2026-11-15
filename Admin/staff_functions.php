@@ -1,5 +1,5 @@
 <?php
-include "dbconn.php"; 
+include "../dbconn.php"; 
 
 if (isset($_POST['action'])) {
 
@@ -55,11 +55,11 @@ if (isset($_POST['action'])) {
 
     if (isset($sql)) {
 
-        if (mysqli_query($con, $sql)) {
+        if (mysqli_query($conn, $sql)) {
             header("Location: staff_manage.php");
             exit();
         } else {
-            echo mysqli_error($con);
+            echo mysqli_error($conn);
         }
     }
 }

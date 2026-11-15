@@ -1,16 +1,16 @@
 <?php
-include "dbconn.php";
+include "../dbconn.php";
 
-$staff_result = mysqli_query($con, "SELECT COUNT(*) AS total FROM staff");
+$staff_result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM staff");
 $staff = mysqli_fetch_assoc($staff_result);
 
-$user_result = mysqli_query($con, "SELECT COUNT(*) AS total FROM user");
+$user_result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM user");
 $user = mysqli_fetch_assoc($user_result);
 
-$challenge_result = mysqli_query($con, "SELECT COUNT(*) AS total FROM challenge"); 
+$challenge_result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM challenge"); 
 $challenge = mysqli_fetch_assoc($challenge_result);
 
-$reward_result = mysqli_query($con, "SELECT COUNT(*) AS total FROM reward"); 
+$reward_result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM reward"); 
 $reward = mysqli_fetch_assoc($reward_result);
 
 ?>

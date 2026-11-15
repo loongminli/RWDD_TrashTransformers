@@ -1,10 +1,10 @@
 <?php
-include "dbconn.php" ;
+include "../dbconn.php" ;
 
 if (isset($_GET['edit'])) {
     $id = (int) $_GET['edit'];
     $sql = "SELECT * FROM reward WHERE reward_id=$id";
-    $result = mysqli_query($con, $sql);
+    $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 }
 ?>
@@ -81,7 +81,7 @@ if (isset($_GET['edit'])) {
 
         <?php
         $sql = "SELECT * FROM reward";
-        $result = mysqli_query($con, $sql);
+        $result = mysqli_query($conn, $sql);
 
         while ($row = mysqli_fetch_assoc($result)) {
         ?>

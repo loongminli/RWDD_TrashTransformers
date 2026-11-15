@@ -1,19 +1,19 @@
 <?php
-include "dbconn.php";
+include "../dbconn.php";
 
 if (isset($_POST['add'])) {
     $challenge = (int) $_POST['challenge_id'];
     $reward = (int) $_POST['reward_id'];
 
     $sql = "INSERT INTO challenge_reward VALUES ($challenge, $reward)";
-    mysqli_query($con, $sql);
+    mysqli_query($conn, $sql);
 }
 
 if (isset($_POST['delete'])) {
     $challenge = (int) $_POST['challenge_id'];
 
     $sql = "DELETE FROM challenge_reward WHERE challenge_id=$challenge";
-    mysqli_query($con, $sql);
+    mysqli_query($conn, $sql);
 }
 ?>
 
@@ -39,7 +39,7 @@ if (isset($_POST['delete'])) {
     <select name="challenge_id" required>
         <option value="">Select Challenge</option>
         <?php
-        $result = mysqli_query($con, "SELECT * FROM challenge");
+        $result = mysqli_query($conn, "SELECT * FROM challenge");
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<option value='$row[challenge_id]'>
                   $row[month] $row[year] - $row[material_required]
@@ -52,7 +52,7 @@ if (isset($_POST['delete'])) {
     <select name="reward_id" required>
         <option value="">Select Reward</option>
         <?php
-        $result = mysqli_query($con, "SELECT * FROM reward");
+        $result = mysqli_query($conn, "SELECT * FROM reward");
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<option value='$row[reward_id]'>$row[reward]</option>";
         }
@@ -75,7 +75,7 @@ if (isset($_POST['delete'])) {
     $sql = "SELECT * FROM challenge_reward
             JOIN challenge USING (challenge_id)
             JOIN reward USING (reward_id)";
-    $result = mysqli_query($con, $sql);
+    $result = mysqli_query($conn, $sql);
 
     while ($row = mysqli_fetch_assoc($result)) {
     ?>

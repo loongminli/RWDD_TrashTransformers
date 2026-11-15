@@ -1,5 +1,5 @@
 <?php
-include "dbconn.php" ; 
+include "../dbconn.php"; 
 
 if (isset($_POST['action'])) {
 
@@ -13,11 +13,11 @@ if (isset($_POST['action'])) {
         $sql = "UPDATE user SET is_active='$status'
                 WHERE user_id='$id'"; // Update status
 
-        if (mysqli_query($con, $sql)) {
+        if (mysqli_query($conn, $sql)) {
             header("Location: user_manage.php");
             exit();
         } else {
-            echo mysqli_error($con);
+            echo mysqli_error($conn);
         }
     }
 }

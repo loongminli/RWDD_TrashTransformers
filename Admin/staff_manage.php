@@ -1,10 +1,10 @@
 <?php
-include "dbconn.php"; 
+include "../dbconn.php"; 
 
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     $sql = "SELECT * FROM staff WHERE staff_id='$id'";
-    $result = mysqli_query($con, $sql);
+    $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 }
 ?>
@@ -135,7 +135,7 @@ if (isset($_GET['edit'])) {
 
         <?php
         $sql = "SELECT * FROM staff";
-        $result = mysqli_query($con, $sql);
+        $result = mysqli_query($conn, $sql);
 
         while ($staff = mysqli_fetch_assoc($result)) {
         ?>

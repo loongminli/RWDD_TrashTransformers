@@ -1,10 +1,10 @@
 <?php
-include"dbconn.php";
+include "../dbconn.php"; 
 
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     $sql = "SELECT * FROM user WHERE user_id='$id'";
-    $result = mysqli_query($con, $sql);
+    $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 }
 ?>
@@ -64,7 +64,7 @@ if (isset($_GET['edit'])) {
 
         <?php
         $sql = "SELECT * FROM user";
-        $result = mysqli_query($con, $sql);
+        $result = mysqli_query($conn, $sql);
 
         while ($row = mysqli_fetch_assoc($result)) {
         ?>
