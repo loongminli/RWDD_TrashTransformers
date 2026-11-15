@@ -1,12 +1,6 @@
 <?php
 include "../../dbconn.php";
 
-$staff_id = 'CL001'; 
-$stmt = $conn->prepare("SELECT name FROM staff WHERE staff_id = ?");
-$stmt->bind_param("s", $staff_id);
-$stmt->execute();
-$staffName = $stmt->get_result()->fetch_assoc()['name'] ?? 'Collector';
-
 $current = basename($_SERVER['PHP_SELF']);
 
 $links = [
@@ -18,7 +12,7 @@ $links = [
 ?>
 <header>
     <div class="logo">
-        <a href = "../../index.php"> <img src="../../logo.png" style="border-radius:100%; width:100%; height:100%;" alt="logo"> </a>
+        <a href = "../../index.php"> <img src="../../logo.png" alt="logo"> </a>
     </div>
 
     <div id="menu">
@@ -35,8 +29,12 @@ $links = [
     </div>
 
     <div id="profile">
-        <div> <?= htmlspecialchars($staffName) ?> </div>
+        <div> <?= htmlspecialchars($_SESSION["name"]) ?> </div>
         <div class="pfp"> <img id="pfp" src="../../pfp.png" alt="pfp" style="border-radius:100%; width:100%; height:100%;"> </div>
+        <div id="staff-actions">
+            <div id="homepage-button" onclick="window.location.href='collector_dashboard.php'"> Dashboard </div>
+            <div id="logout-button"> Logout </div> 
+        </div>
     </div>
 
     <script>
@@ -44,5 +42,17 @@ $links = [
             document.getElementById("menu-options").classList.toggle("active");
             this.classList.toggle("active");
         });
+
+        document.getElementById("pfp").addEventListener("click", function () {
+            document.getElementById("staff-actions").classList.toggle("active");
+        })
+
+        document.getElementById("logout-button").addEventListener("click", function () {
+            confirmLogout = confirm("Are you sure you want to logout?");
+
+            if (confirmLogout) {
+                window.location.href = "../../logout.php";
+            }
+        })
     </script>
 </header>
