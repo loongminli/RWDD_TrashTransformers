@@ -23,9 +23,9 @@
                 $_SESSION["name"] = $accountinfo["name"];
 
                 if ($role === "Admin") {
-                    // header("Location:");
+                    header("Location:Admin/admin_homepages.php");
                 } elseif ($role === "Collector") {
-                    // header("Location:");
+                    header("Location:CollectionOfficer\collection_officer\collector_dashboard.php");
                 } elseif ($role === "Coordinator") {
                     header("Location: RecyclingCoordinator/RC_homepage.php");
                 }
@@ -150,7 +150,7 @@
         <h4> Contact the admin to register a staff account. </h4>
         <br>
         <h4> Not a staff? </h4>
-        <a class="user-login-button" href=""> User Login </a>
+        <a class="user-login-button" href="User/login.php"> User Login </a>
     </div>
 </body>
 </html>

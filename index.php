@@ -163,20 +163,20 @@
                 if (isset($_SESSION["id"])) {
                     switch ($_SESSION["role"]) {
                         case "User" :
-                            echo "<a href='.php'> <div class='menu-option'> <h4> User Functions </h4> </div> </a>";
+                            echo "<a href='User/user.php'> <div class='menu-option'> <h4> User Functions </h4> </div> </a>";
                             break;
                         case "Admin" :
-                            echo "<a href='.php'> <div class='menu-option'> <h4> Admin Functions </h4> </div> </a>";
+                            echo "<a href='Admin/admin_homepages.php'> <div class='menu-option'> <h4> Admin Functions </h4> </div> </a>";
                             break;
                         case "Collector" :
-                            echo "<a href='.php'> <div class='menu-option'> <h4> Collector Functions </h4> </div> </a>";
+                            echo "<a href='CollectionOfficer/collection_officer/collector_dashboard.php'> <div class='menu-option'> <h4> Collector Functions </h4> </div> </a>";
                             break;
                         case "Coordinator" :
                             echo "<a href='RecyclingCoordinator/RC_homepage.php'> <div class='menu-option'> <h4> Coordinator Functions </h4> </div> </a>";
                             break;
                     }
                 } else {
-                    echo "<a href='userregister.php'> <div class='menu-option'> <h4> Register an Account </h4> </div> </a>";
+                    echo "<a href='User/register.php'> <div class='menu-option'> <h4> Register an Account </h4> </div> </a>";
                 }
             ?>
             <a href="meetourteam.php"> <div class="menu-option"> <h4> Get to Know Us </h4> </div> </a>
@@ -197,7 +197,7 @@
             <div id="actions">
                 <?php
                     if (!isset($_SESSION["id"])) {
-                        echo "<a href='staff_login.php'> <div id='login-button'> Login </div> </a>";
+                        echo "<a href='User/login.php'> <div id='login-button'> Login </div> </a>";
                     } else {
                         echo "<div id='logout-button'> Logout </div> ";
                     }
