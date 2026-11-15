@@ -1,13 +1,12 @@
 <?php
-session_start();
-include 'db_connect.php';
+include "../dbconn.php";
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['id'])) {
     header("Location: login.php");
     exit();
 }
 
-$user_id = mysqli_real_escape_string($conn, $_SESSION['user_id']);
+$user_id = mysqli_real_escape_string($conn, $_SESSION['id']);
 
 // Get student's drop-offs
 $sql = "SELECT d.dropoff_datetime, d.item, d.quantity,
@@ -48,7 +47,7 @@ $challenge_result = mysqli_query($conn, $sql);
 
 <nav class="navbar">
     <div class="logo">
-        <img src="logo.jpeg" alt="Trash Transformers Logo">
+        <a href="../index.php"> <img src="../logo.png" alt="Trash Transformers Logo"> </a>
         <span>Trash Transformers</span>
     </div>
 

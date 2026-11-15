@@ -1,13 +1,12 @@
 <?php
-session_start();
-include "db_connect.php";
+include "../dbconn.php";
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['id'])) {
     header("Location: login.php");
     exit();
 }
 
-$tp = mysqli_real_escape_string($conn, $_SESSION['user_id']);
+$tp = mysqli_real_escape_string($conn, $_SESSION['id']);
 
 $result = mysqli_query($conn, "SELECT username, nickname FROM user WHERE user_id = '$tp' AND is_active = 1");
 $user = mysqli_fetch_assoc($result);
@@ -115,7 +114,7 @@ $recent_result = mysqli_query($conn, $sql);
 
 <nav class="navbar">
     <div class="logo">
-    <img src="logo.jpeg" alt="Trash Transformers Logo">
+    <a href="../index.php"> <img src="../logo.png" alt="Trash Transformers Logo"> </a>
     <span>Trash Transformers</span>
 </div>
 

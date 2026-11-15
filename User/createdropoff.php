@@ -1,9 +1,8 @@
 
 <?php
-session_start();
-include "db_connect.php";
+include "../dbconn.php";
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['id'])) {
     header("Location: login.php");
     exit();
 }
@@ -20,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $item = trim($_POST['material'] ?? '');
     $quantity = filter_var($_POST['quantity'] ?? '', FILTER_VALIDATE_INT);
     $collectionpoint_id = filter_var($_POST['collection_point'] ?? '', FILTER_VALIDATE_INT);
-    $user_id = $_SESSION['user_id'];
+    $user_id = $_SESSION['id'];
 
     if ($item == "" || strlen($item) > 50 ||
         $quantity === false || $quantity < 1 || $quantity > 20 ||
@@ -80,7 +79,7 @@ $result = mysqli_query($conn, $sql);
 
 <nav class="navbar">
     <div class="logo">
-    <img src="logo.jpeg" alt="Trash Transformers Logo">
+    <a href="../index.php"> <img src="../logo.png" alt="Trash Transformers Logo"> </a>
     <span>Trash Transformers</span>
 </div>
 

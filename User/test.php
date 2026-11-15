@@ -1,6 +1,6 @@
 
 <?php
-require_once 'db_connect.php';
+require_once '../dbconn.php';
 
 $result = $conn->query("SELECT user_id, username FROM `user`");
 

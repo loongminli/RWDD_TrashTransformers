@@ -1,7 +1,6 @@
 
 <?php
-session_start();
-include "db_connect.php";
+include "../dbconn.php";
 
 $tp_error = "";
 $username_error = "";
@@ -111,7 +110,7 @@ unset($_SESSION['register_error']);
     <div class="register">
 
         <div class="logo">
-            <img src="logo.jpeg" alt="Logo" width="45">
+            <a href="../index.php"> <img src="../logo.png" alt="Trash Transformers Logo"> </a>
             <h3>Trash Transformers</h3>
         </div>
 

@@ -1,14 +1,13 @@
 
 <?php
-session_start();
-include 'db_connect.php';
+include "../dbconn.php";
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['id'])) {
     header("Location: login.php");
     exit();
 }
 
-$user_id = mysqli_real_escape_string($conn, $_SESSION['user_id']);
+$user_id = mysqli_real_escape_string($conn, $_SESSION['id']);
 $tab = $_GET['tab'] ?? 'account';
 $message = "";
 
@@ -201,7 +200,7 @@ if ($tab == 'rewards') {
 
 <nav class="navbar">
     <div class="logo">
-        <img src="logo.jpeg" alt="Trash Transformers Logo">
+        <a href="../index.php"> <img src="../logo.png" alt="Trash Transformers Logo"> </a>
         <span>Trash Transformers</span>
     </div>
  <ul>

@@ -1,6 +1,5 @@
 <?php
-session_start();
-include "db_connect.php";
+include "../dbconn.php";
 
 $tp_error = "";
 $password_error = "";
@@ -42,8 +41,9 @@ if (isset($_POST['login'])) {
             }
             else {
                 session_regenerate_id(true);
-                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['id'] = $user['user_id'];
                 $_SESSION['username'] = $user['username'];
+                $_SESSION['role'] = "User";
 
                 header("Location: user.php");
                 exit();
@@ -88,7 +88,7 @@ unset($_SESSION['account_error']);
     <div class="register login-form">
 
         <div class="logo">
-            <img src="logo.jpeg" alt="Logo" width="45">
+            <a href="../index.php"> <img src="../logo.png" alt="Trash Transformers Logo"> </a>
             <h3>Trash Transformers</h3>
         </div>
 
@@ -138,6 +138,10 @@ if ($password_error != "") {
 
         <p>Don't have an account?
             <a href="register.php">Register here</a>
+        </p>
+
+        <p>Looking for staff login?
+            <a href="../staff_login.php"> Staff login</a>
         </p>
 
     </div>

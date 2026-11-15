@@ -45,9 +45,15 @@ body {
 }
 
 .logo img {
-  height : 3.5rem;
-    width : 3.5rem;
+    height : 100%;
+    width : 100%;
     object-fit: contain;
+    border-radius : 100%;
+}
+
+.logo a {
+    height : 5rem;
+    width : 5rem;
 }
 
 .logo {
