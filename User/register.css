@@ -1,0 +1,227 @@
+body { 
+    margin: 0px;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom right,#d9e9d2, #a9c6a7);
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1300px;
+    min-height: 750px;
+    margin: 30px auto;
+    border-radius: 35px;
+    overflow: hidden;
+}
+
+.register {
+    width: 50%;
+    padding: 40px 55px;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #d2dbb2, #83a683 )
+}
+
+.logo  {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    height : 4.5rem;
+    width : 4.5rem;
+    object-fit: contain;
+}
+
+.logo h3{
+    font-family:poppins, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2e5b2f;
+}
+
+.register h1{
+    color:#266d40;
+    font-family: merriweather, sans-serif;
+    font-size: 23px;
+}
+
+.register p{
+    color: #567d72;
+    font-family: roboto, sans-serif;
+    font-style: italic;
+    font-size: 15px;
+    margin-left: 15px;
+    padding-bottom: 14px;
+}
+
+.register label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 4px;
+    font-family: open sans, sans-serif;
+    font-size: 14px;
+    color:#336246
+}
+
+.register input{
+    display: block;
+    width:100%;
+    padding: 15px;
+    border: 1px solid #dddddd;
+    border-radius: 25px;
+    box-sizing: border-box;
+}
+
+.register input:focus {
+    border-color: #7dba8f;
+    outline: none;
+}
+
+.register input[type="submit"] {
+    background-color: #476751;
+    color: white;
+    border: none;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.register input[type="submit"]:hover {
+    background-color: #364a3c;
+}
+
+.register a {
+    color: #3d694b;
+}
+
+
+.image {
+    width: 50%;
+    background-image: url("forestreg.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Error messages */
+.register .error-message {
+    color: red;
+    font-size: 13px;
+    font-style: normal;
+    margin: 5px 0 10px;
+    padding: 0;
+}
+
+/* Show Password checkbox */
+.register .show-password {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.register .show-password input {
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+
+@media screen and (max-width: 700px) {
+    .container {
+        display: block;
+        width: 95%;
+        min-height: auto;
+        margin: 20px auto;
+    }
+
+    .register {
+        width: 100%;
+        padding: 25px;
+    }
+
+    .image {
+        display: none;
+    }
+}
+
+
+/*LOGIN PAGE*/
+
+.login-container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    min-height: 750px;
+    margin: 40px auto;
+    border-radius: 35px;
+    overflow: hidden;
+}
+
+
+.login-image {
+    width: 50%;
+    background-image: url("forestlog.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-form{
+    width: 50%;
+}
+
+.login-form .logo{
+    margin-bottom: 70px;
+}
+
+.login-form h1 {
+    margin-top: 50px;
+}
+
+.login-form form {
+    margin-top: 40px;
+}
+
+.login-form .login-text {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.login-form .error-message {
+    color: red;
+    font-size: 13px;
+    font-style: normal;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.show-password {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.show-password input {
+    width: auto;
+    margin: 0;
+}
+
+/*RESPONSIVE DESIGN*/
+@media screen and (max-width: 700px) {
+    .login-image {
+        display: none;
+    }
+
+    .login-form {
+        width: 100%;
+        padding: 30px;
+    }   
+}

@@ -1,0 +1,184 @@
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #F8F8F3;
+    background-image: radial-gradient(circle, #a0cac1 2px, transparent 2.5px);
+    background-size: 25px 25px;
+}
+
+main {
+    position: relative;
+}
+
+.dropoff-form {
+    width: 95%;
+    max-width: 900px;
+    min-height: 530px;
+    margin: 60px auto;
+    padding: 30px 40px;
+    background-color: #76a97d;
+    border: 2px solid #7ca187;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.dropoff-form select option:disabled {
+    color: #999999;
+    background-color: #eeeeee;
+}
+
+.dropoff-form h2 {
+    font-size: 32px;
+    color: #e2efeb;
+    margin: 15px 5px;
+}
+
+.form-description {
+    font-size: 18px;
+    color: #eaeaea;
+    margin-bottom: 35px;
+    padding: 3px;
+}
+
+.form-group {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    column-gap: 40px;
+    row-gap: 45px;
+    align-items: center;
+}
+
+.dropoff-form label {
+    font-size: 18.5px;
+    font-weight: 400;
+    color: #e2efeb;
+}
+
+.dropoff-form input,
+.dropoff-form select {
+    width: 80%;
+    height: 55px;
+    padding: 12px 20px;
+    background-color: #FFFDF3;
+    border: 2px solid #899e82;
+    border-radius: 15px;
+    font-family: inherit;
+    font-size: 17px;
+    color: #385943;
+    box-sizing: border-box;
+}
+
+.dropoff-form input:focus,
+.dropoff-form select:focus {
+    outline: 2px solid #b8dbc3;
+    border-color: #A3BF96;
+}
+
+.form-group button {
+    grid-column: 2;
+    justify-self: end;
+    margin-top: 15px;
+    padding: 13px 25px;
+    background-color: #527B5F;
+    color: white;
+    font-family: inherit;
+    font-size: 19px;
+    border: 2px solid #385943;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #2a593f;
+}
+
+.dropoff-form input[type="number"]::-webkit-inner-spin-button,
+.dropoff-form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.dropoff-form input[type="number"] {
+    appearance: textfield;
+}
+
+.snoopy-image {
+    position: absolute;
+    width: 180px;
+    height: auto;
+    left: 25px;
+    bottom: 20px;
+    pointer-events: none;
+}
+
+.popup-message {
+    position: fixed;
+    top: 100px;
+    right: 30px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    animation: popupDisappear 3s forwards;
+}
+
+.popup-message.success {
+    background-color: #e4f5e7;
+    color: #24572a;
+    border: 1px solid #a4d4ab;
+}
+
+.popup-message.error {
+    background-color: #ffe5e5;
+    color: #a32626;
+    border: 1px solid #e8a0a0;
+}
+
+@keyframes popupDisappear {
+    0%, 75% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 768px) {
+    .dropoff-form {
+        width: 92%;
+        padding: 25px;
+        margin: 30px auto;
+    }
+
+    .dropoff-form h2 {
+        font-size: 26px;
+    }
+
+    .form-group {
+        grid-template-columns: 1fr;
+        row-gap: 15px;
+    }
+
+    .dropoff-form input,
+    .dropoff-form select {
+        width: 100%;
+    }
+
+    .form-group button {
+        grid-column: 1;
+        width: 100%;
+    }
+
+    .snoopy-image {
+        position: static;
+        display: block;
+        width: 140px;
+        margin: 10px auto 25px;
+    }
+}

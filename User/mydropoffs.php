@@ -1,0 +1,191 @@
+<?php
+session_start();
+include 'db_connect.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = mysqli_real_escape_string($conn, $_SESSION['user_id']);
+
+// Get student's drop-offs
+$sql = "SELECT d.dropoff_datetime, d.item, d.quantity,
+               d.is_collected, c.collectionpoint
+        FROM dropoff d
+        JOIN collectionpoint c
+        ON d.collectionpoint_id = c.collectionpoint_id
+        WHERE d.user_id = '$user_id'
+        ORDER BY d.dropoff_datetime DESC, d.dropoff_id DESC";
+
+$dropoffs_result = mysqli_query($conn, $sql);
+
+// Get previous challenges
+$sql = "SELECT * FROM challenge
+       WHERE year < YEAR(CURDATE())
+OR (year = YEAR(CURDATE())
+    AND FIELD(month, 'January', 'February', 'March',
+              'April', 'May', 'June', 'July', 'August',
+              'September', 'October', 'November', 'December')
+        < MONTH(CURDATE()))
+ORDER BY year DESC, challenge_id DESC
+LIMIT 12";
+
+$challenge_result = mysqli_query($conn, $sql);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Drop-offs - Trash Transformers</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mydropoffs.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="logo.jpeg" alt="Trash Transformers Logo">
+        <span>Trash Transformers</span>
+    </div>
+
+     <ul>
+        <li><a href="user.php">Home</a></li>
+        <li><a href="createdropoff.php">Create Drop-off</a></li>
+        <li><a href="mydropoffs.php">My Drop-offs</a></li>
+        <li class="profile-menu">
+            <button type="button" class="profile-button" onclick="toggleProfile()">Profile ▾</button>
+            <ul class="profile-dropdown">
+                <li><a href="profile.php?tab=myaccount">My Account</a></li>
+                <li><a href="profile.php?tab=rewards">Rewards</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+
+<main class="mydropoffs-page">
+
+    <section class="dropoffs-history">
+        <h2>MY DROP-OFFS</h2>
+
+        <div class="table-container">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Material Type</th>
+                        <th>Quantity</th>
+                        <th>Collection Point</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (mysqli_num_rows($dropoffs_result) > 0): ?>
+                        <?php while ($dropoff = mysqli_fetch_assoc($dropoffs_result)): ?>
+                            <tr>
+                                <td><?php echo date("d M Y", strtotime($dropoff['dropoff_datetime'])); ?></td>
+                                <td><?php echo htmlspecialchars($dropoff['item']); ?></td>
+                                <td><?php echo htmlspecialchars($dropoff['quantity']); ?> kg</td>
+                                <td><?php echo htmlspecialchars($dropoff['collectionpoint']); ?></td>
+                                <td><?php echo $dropoff['is_collected'] == 1 ? "Collected" : "Pending"; ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5">No drop-offs found.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="challenge-history">
+        <h2>CHALLENGE HISTORY</h2>
+
+        <div class="table-container">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Challenge</th>
+                        <th>Progress</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (mysqli_num_rows($challenge_result) > 0): ?>
+                        <?php while ($challenge = mysqli_fetch_assoc($challenge_result)): ?>
+
+                            <?php
+                            $month = mysqli_real_escape_string($conn, $challenge['month']);
+                            $year = (int)$challenge['year'];
+                            $material = mysqli_real_escape_string($conn, $challenge['material_required']);
+
+                            // Calculate student's verified recycling progress
+                            $sql = "SELECT COALESCE(SUM(dc.actual_quantity), 0) AS total
+                                    FROM dropoff d
+                                    JOIN dropoff_check dc
+                                    ON d.dropoff_id = dc.dropoff_id
+                                    JOIN dropoff_recyclable dr
+                                    ON d.dropoff_id = dr.dropoff_id
+                                    WHERE d.user_id = '$user_id'
+                                    AND d.is_collected = 1
+                                    AND dc.is_recyclable = 1
+                                    AND dr.material_type = '$material'
+                                    AND MONTHNAME(d.dropoff_datetime) = '$month'
+                                    AND YEAR(d.dropoff_datetime) = $year";
+
+                            $progress_result = mysqli_query($conn, $sql);
+                            $progress_data = mysqli_fetch_assoc($progress_result);
+                            $progress = $progress_data['total'];
+                            ?>
+
+                            <tr>
+                                <td><?php echo htmlspecialchars($challenge['month'] . " " . $challenge['year']); ?></td>
+
+                                <td>
+                                    Recycle <?php echo htmlspecialchars($challenge['material_required']); ?>
+                                </td>
+
+                                <td>
+                                    <?php echo $progress; ?> /
+                                    <?php echo htmlspecialchars($challenge['quota']); ?> kg
+                                </td>
+
+                                <td>
+                                    <?php
+                                    if ($progress >= $challenge['quota']) {
+                                        echo "Completed";
+                                    } else {
+                                        echo "Uncompleted";
+                                    }
+                                    ?>
+                                </td>
+                            </tr>
+
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="4">No previous challenges found.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<script>
+function toggleProfile() {
+    document.querySelector('.profile-menu').classList.toggle('open');
+}
+</script>
+
+</body>
+</html>

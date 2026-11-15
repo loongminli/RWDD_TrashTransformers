@@ -1,0 +1,550 @@
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: #f4f4e1;
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 20px;
+    background-color: #50755b;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.navbar li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.navbar li:last-child {
+    margin-right: 0;
+}
+
+.navbar a {
+    display: block;
+    padding: 14px 16px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    background-color: #24572a;
+}
+
+.logo img {
+  height : 3.5rem;
+    width : 3.5rem;
+    object-fit: contain;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo span {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 550;
+}
+
+/* Dashboard Layout */
+.welcome {
+    width: 90%;
+    margin: 30px auto;
+     font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #244c35;
+}
+
+.dashboard,
+.dashboard-bottom {
+    display: flex;
+    align-items: stretch;
+    gap: 40px;
+    width: 97%;
+    max-width: 1400px;
+    margin: 30px auto;
+}
+
+.dashboard-bottom {
+    margin: 20px auto 40px;
+    align-items: flex-start;
+}
+
+.challenge,
+.collection {
+    flex: 1.3;
+}
+
+.reward,
+.dropoff-section {
+    flex: 1;
+}
+
+.challenge,
+.reward,
+.collection,
+.dropoff-section {
+    min-width: 0;
+    min-height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Monthly Challenge */
+.challenge {
+    background-color: #a19f7b;
+    background-image: url("challengee.png");
+    background-position: right 15px top 15px;
+    background-size: 350px auto;
+    background-repeat: no-repeat;
+}
+
+.challenge h3 {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0 0 40px;
+}
+
+.collection h3,
+.dropoff-section h3 {
+    color: #ecf5ea;
+    font-size: 20px;
+}
+
+.challenge-title {
+    color: #f7f4df;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 30px;
+}
+
+.challenge-info {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.challenge-info-box {
+    flex: 1;
+    background-color: #e9e7cf;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.challenge-info-box span {
+    color: #60715b;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.challenge-info-box h4 {
+    color: #244c35;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 5px 0 0;
+    text-transform: capitalize;
+}
+
+.challenge p {
+    color: #f7f4df;
+    font-size: 17px;
+    font-weight: 400;
+    margin: 14px 0;
+}
+
+
+.progress h4 {
+    color: #ecf5ea;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 20px 0 12px;
+}
+
+.progress p {
+    color: #ebf0eb;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 12px 0;
+}
+
+.progress-track {
+    width: 100%;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.65);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #476b45;
+    border-radius: 20px;
+}
+
+
+/* Reward */
+.reward {
+    background-color: #D2B900;
+    border: 1px solid #93872f;
+}
+
+.reward h3 {
+    color: #effaf2;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.voucher-card {
+    background-color: #f7f4df;
+    border: 1px solid #e5dfb6;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-top: 12px;
+    color: #244c35;
+}
+
+.voucher-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    color: #244c35;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.voucher-lock img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    filter: brightness(0);
+}
+
+.voucher-details {
+    text-align: center;
+    padding: 15px 5px;
+}
+
+.voucher-details p {
+    color: #48634b;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin: 0 0 8px;
+}
+
+.voucher-details h2 {
+    color: #244c35;
+    font-size: 25px;
+    line-height: 1.3;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.voucher-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid #d8d6b7;
+    padding-top: 12px;
+    margin-top: 8px;
+}
+
+.voucher-progress p {
+    color: #244c35;
+    font-size: 15px;
+    margin: 0;
+}
+
+.voucher-progress-track {
+    width: 100%;
+    height: 8px;
+    background-color: #dce5d9;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.voucher-progress-fill {
+    height: 100%;
+    background-color: #476b45;
+    border-radius: 20px;
+}
+
+.voucher-status {
+    color: #385b3b;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    margin: 12px 0 0;
+}
+
+.voucher-percentage {
+    font-size: 16px;
+    font-weight: 600;
+    color: #285540;
+    margin: 8px 0 0;
+}
+
+.voucher-card form {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.claim-button {
+    background-color: #385b3b;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 9px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.claim-button:hover {
+    background-color: #244c35;
+}
+
+.no-reward {
+    background-color: #f7f4df;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.no-reward p {
+    color: #385b3b;
+}
+
+/* Collection Points */
+.collection {
+    background-color: #98A735;
+    border: 1px solid #adba58;
+}
+
+.collection h3,
+.dropoff-section h3 {
+    margin-bottom: 20px;
+}
+
+.point-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background-color: rgba(255, 253, 243, 0.9);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.location-icon {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    flex-shrink: 0;
+    mix-blend-mode: multiply;
+}
+
+.point-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.point-info strong {
+    color: #244c35;
+    font-size: 15px;
+}
+
+.point-available,
+.point-unavailable {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+}
+
+.point-available {
+    color: #27834b;
+}
+
+.point-unavailable {
+    color: #d32f2f;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.point-available .status-dot {
+    background-color: #27834b;
+}
+
+.point-unavailable .status-dot {
+    background-color: #d32f2f;
+}
+
+/* Recent Drop-offs */
+.dropoff-section {
+    background-color: #a19f7b;
+    background-image: url("dropofff.png");
+    background-position: right 10px top -70px;
+    background-size: 300px auto;
+    background-repeat: no-repeat;
+    border: 1px solid #82704f;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.table-scroll {
+    overflow-x: auto;
+    margin-top: 97px;
+}
+
+.dropoff-section table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+    background-color: rgba(255, 253, 243, 0.55);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.dropoff-section th,
+.dropoff-section td {
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.dropoff-section th {
+    color: #385b3b;
+    font-weight: 700;
+}
+
+.dropoff-section td {
+    color: #4a5547;
+}
+
+
+.dropoff-section tbody tr:not(:last-child) td {
+    border-bottom: 1px solid rgba(100, 95, 65, 0.25);
+}
+
+.dropoff-section h3 {
+    color: #ecf5ea;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.dropoff-section a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #1a3024;
+    font-weight: 700;
+}
+
+/* Profile Dropdown */
+.profile-menu {
+    position: relative;
+}
+
+.profile-button {
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 14px 16px;
+    cursor: pointer;
+}
+
+.profile-button:hover {
+    background-color: #24572a;
+}
+
+.navbar .profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 160px;
+    background-color: #527b5f;
+    z-index: 100;
+}
+
+.profile-menu:hover .profile-dropdown,
+.profile-menu.open .profile-dropdown {
+    display: block;
+}
+
+.profile-dropdown li {
+    display: block;
+    margin: 0;
+}
+
+.profile-dropdown a {
+    padding: 12px 16px;
+    text-align: left;
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+    .dashboard,
+    .dashboard-bottom {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .navbar ul {
+        white-space: normal;
+    }
+}
+
+@media (max-width: 600px) {
+    .voucher-card {
+        padding: 15px;
+    }
+
+    .voucher-details h2 {
+        font-size: 20px;
+    }
+
+    .voucher-progress {
+        flex-wrap: wrap;
+    }
+}

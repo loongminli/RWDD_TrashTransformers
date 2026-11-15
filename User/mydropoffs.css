@@ -1,0 +1,74 @@
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #F8F8F3;
+    background-image: url("mi.jpeg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.mydropoffs-page {
+    width: 90%;
+    max-width: 1400px;
+    margin: 50px auto;
+}
+
+.mydropoffs-page h2 {
+    font-size: 32px;
+    color: #385943;
+    margin-bottom: 30px;
+}
+
+.dropoffs-history {
+    margin-bottom: 65px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #88AD7B;
+    border-radius: 18px;
+    background-color: #FFFFFF;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.history-table th {
+    background-color: #527B5F;
+    color: white;
+    font-size: 18px;
+    padding: 20px 15px;
+    font-weight: 600;
+}
+
+.history-table td {
+    padding: 20px 15px;
+    font-size: 16px;
+    color: #385943;
+    border-top: 1px solid #DCE8DF;
+}
+
+.history-table tbody tr:nth-child(even) {
+    background-color: #F2F7EF;
+}
+
+@media (max-width: 768px) {
+    .mydropoffs-page {
+        width: 95%;
+    }
+
+    .history-table {
+        min-width: 650px;
+    }
+
+    .history-table th,
+    .history-table td {
+        padding: 14px 10px;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,342 @@
+:root {
+    --bg: #F7F4ED;
+    --header: #8FA28A;
+    --card: #C7D3C0;
+    --accent: #C8A96B;
+    --accent-hover: #ad925c;
+    --accent-border: #9a814f;
+    --link-hover: #22447a;
+}
+
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body { 
+    background-color: var(--bg); }
+
+h2, h4 { text-align: center; }
+
+a { text-decoration: none; color: black; }
+
+.text-link {
+    color: #22447a;
+    text-decoration: underline;
+}
+.text-link:hover { color: #5f7a59; }
+
+.placeholder { color: black; text-align: center; }
+
+/* header */
+header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: var(--header);
+}
+
+.pfp {
+    height : 3.5rem;
+    width : 3.5rem;
+}
+
+.logo { display: flex; align-items: center; }
+.logo a { display: flex; align-items: center; }
+.logo img {
+    height: 3.5rem;
+    width: auto;
+    display: block;
+}
+
+header .logo { flex: 1 1 0; justify-content: flex-start; }
+#profile {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+#menu { 
+    flex: 0 0 auto; 
+    display: flex; 
+    align-items: center; }
+
+#menu-options { display: flex; flex-direction: row; }
+
+.menu-option {
+    height: 2.5rem;
+    width: 10rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0.4rem;
+    display: flex;
+    border: 2px solid black;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.5s ease;
+    background-color: var(--accent);
+}
+.menu-option:hover,
+.menu-option.current { background-color: var(--accent-hover); }
+.menu-option h4 { color: black; transition: font-size 0.3s ease; }
+.menu-option:hover h4 { color: var(--link-hover); font-size: 105%; }
+
+#hamburger-menu-icon {
+    display: none;
+    border: 2px solid black;
+    cursor: pointer;
+    background-color: var(--accent);
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+/* page layout */
+.page,
+.dashboard { max-width: 1100px; margin: 0 auto; padding: 1rem 1.5rem; }
+.dashboard { text-align: center; }
+.page h1,
+.dashboard h1 { margin-bottom: 1rem; }
+.page p { margin-bottom: 0.75rem; }
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* ---------- Cards (dashboard menu) ---------- */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+.card,
+.menu-card {
+    display: block;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 1.2rem;
+    background-color: var(--card);
+}
+.menu-card { text-align: center; transition: transform 0.2s; }
+.menu-card:hover,
+.menu-card:focus { transform: translateY(-4px); }
+.menu-card h3 { margin-bottom: 0.5rem; }
+.menu-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+.menu-link { font-weight: bold; text-decoration: underline; }
+
+/* ---------- Buttons ---------- */
+.button,
+.back-button {
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 0.7rem 1.2rem;
+    width: fit-content;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    background-color: var(--accent);
+    color: black;
+    font-size: 1rem;
+}
+.back-button { border-color: var(--accent-border); }
+.button:hover,
+.back-button:hover { background-color: var(--accent-hover); }
+
+.mark-button {
+    display: inline-block;
+    border: 0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    background-color: greenyellow;
+    color: rgb(1, 97, 1);
+    cursor: pointer;
+    font-size: 1rem;
+}
+.inline-form { display: inline; }
+
+/* tables */
+.table-wrap { 
+    overflow-x: auto; 
+    margin-top: 1rem; 
+}
+
+.info-table { 
+    border-collapse: collapse; 
+    background-color: white; 
+    width: 100%; 
+}
+
+.info-table th {
+    padding: 0.5rem;
+    border: 2px solid black;
+    background-color: lightgray;
+    text-align: left;
+}
+.info-table td {
+    padding: 0.5rem;
+    border: 2px solid black;
+    background-color: white;
+}
+.table-wide .info-table { min-width: 800px; }
+
+/* ---------- Forms ---------- */
+input { padding: 0.5rem; }
+input[readonly] { background-color: rgb(227, 227, 227); border: none; }
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+}
+.filter-form label { display: flex; flex-direction: column; font-size: 0.9rem; }
+.filter-form input,
+.filter-form select { padding: 0.5rem; border: 1px solid black; border-radius: 5px; }
+
+.form-card {
+    max-width: 500px;
+    padding: 1.5rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: var(--card);
+}
+.form-card label { display: block; margin-bottom: 1rem; font-weight: bold; }
+.form-card fieldset { border: 0; margin-bottom: 1rem; }
+.form-card legend { font-weight: bold; margin-bottom: 0.3rem; }
+.form-card input[type="radio"] { padding: 0; margin: 0 0.3rem 0 0.8rem; }
+.form-card input[type="text"],
+.form-card input[type="number"],
+.form-card select {
+    display: block;
+    width: 100%;
+    margin-top: 0.3rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: white;
+    font-size: 1rem;
+}
+.form-card input:focus,
+.filter-form input:focus,
+.filter-form select:focus { outline: 2px solid var(--link-hover); outline-offset: 1px; }
+.form-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 1rem; }
+.form-hint { display: block; margin-top: 0.3rem; font-weight: normal; font-size: 0.85rem; }
+
+/* ---------- Messages ---------- */
+.error { color: red; font-size: 0.9rem; margin-bottom: 1rem; }
+.alert { margin: 1rem auto; color: rgb(39, 167, 152); text-align: center; }
+
+/* ---------- Status labels ---------- */
+.badge {
+    display: inline-block;
+    padding: 0.1rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+.badge-active   { background-color: greenyellow; color: rgb(1, 97, 1); }
+.badge-inactive { background-color: lightgray; color: #333; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+    h2 { font-size: 100%; }
+    header { position: relative; }
+    #hamburger-menu-icon { display: flex; }
+
+    #menu-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+    }
+    #menu-options.active {
+        display: flex;
+        background-color: var(--bg);
+        border: 5px ridge #7e6535;
+    }
+    .page, .dashboard { padding: 1rem; }
+    .form-card { max-width: 100%; }
+}
+
+.guideline-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.guideline-figure { 
+    margin: 0; 
+    width: 100%;
+    display: flex;
+    justify-content: center;   
+}
+
+.guideline-img {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: white;
+}
+
+.zoom-trigger {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+}
+
+.image-dialog {
+    width: 95vw;
+    max-width: 1100px;
+    max-height: 95vh;
+    margin: auto;
+    padding: 0.75rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: var(--bg);
+}
+.image-dialog::backdrop { background: rgba(0, 0, 0, 0.7); }
+
+.dialog-scroll {
+    max-height: calc(95vh - 5rem);
+    margin-top: 0.75rem;
+    overflow: auto;
+}
+.dialog-scroll img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.back-button {margin-bottom: 1rem;}
+
+.form-page { display: flex; justify-content: center; }
+.form-card { width: 100%; max-width: 480px; }
+.form-card h2 { text-align: left; margin-bottom: 0.3rem; }
+.form-intro { margin-bottom: 1.2rem; font-size: 0.95rem; }
+.required { color: red; }
+.form-actions { justify-content: space-between; }
+.form-card .back-button { margin-bottom: 0; }
