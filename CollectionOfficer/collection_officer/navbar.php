@@ -1,6 +1,4 @@
 <?php
-include "../../dbconn.php";
-
 $current = basename($_SERVER['PHP_SELF']);
 
 $links = [
