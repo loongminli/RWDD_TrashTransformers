@@ -135,6 +135,21 @@
             background-color: black;
             border : 2px solid white;
         }
+
+        @media (max-width : 768px) {
+            .content { 
+                grid-template-columns : none;
+            }
+
+            .menu-option {
+                width : 6rem;
+                height : fit-content;
+            }
+
+            .menu-option h4 (
+                color : red;
+            )
+        }
     </style>
 </head>
 <body>
@@ -202,7 +217,7 @@
 
             <div>
                 <h2> What do we do ? </h2>
-                <p> Our system acts as the bridge between the APU community and recycling. We understand that ___ </p>
+                <p> Our efforts acts as the bridge between the APU community and recycling. We provide convenient drop-off points where anybody can drop off recyclable materials at their own convenience and earn rewards for it. </p>
             </div>
         </div>
 
@@ -213,7 +228,7 @@
 
             <div>
                 <h2> Why are we doing this ? </h2>
-                <p>  </p>
+                <p> Inconveniences are discouraging our community from practicing recycling in the university. We understand that recycling takes a few more steps than just simply disposing. Not to mention, there are a lack of recycling efforts done in APU. Hence, we provide the convenience while all the community has to do is leave the recyclables to us! </p>
             </div>
         </div>
     </div>
