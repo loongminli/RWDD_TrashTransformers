@@ -109,8 +109,8 @@
                 </div>
             </div>
 
-            <div class="card" onclick="window.location.href='LINK HERE'">
-                <img src="logo.png" alt="NAMEEEEE" class="pfp">
+            <div class="card" onclick="window.location.href='aboutme-maryam/aboutme.php'">
+                <img src="aboutme-maryam/maryampfp.jpeg" alt="maryam" class="pfp">
                 <div class="info">
                     <h2> User </h2>
                     <h3> Maryam Rehman </h3>
