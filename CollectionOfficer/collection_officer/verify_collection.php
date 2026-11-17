@@ -1,13 +1,15 @@
 <?php
 include "../../dbconn.php";
 
-$staff_id = 'CL001';
+$staff_id = $_SESSION["id"];
 $id = (int)($_GET['id'] ?? $_POST['dropoff_id'] ?? 0);
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $userid = $_POST["user_id"];
     $actual        = filter_var($_POST['actual_quantity'] ?? '', FILTER_VALIDATE_INT);
     $is_recyclable = (int)($_POST['is_recyclable'] ?? -1);
+    $material_type = $_POST["material_type"] ?? "";
 
     if ($actual === false || $actual < 0) {
         $error = "Actual quantity must be 0 or more.";
@@ -36,6 +38,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $conn->prepare("UPDATE dropoff SET is_collected = 1 WHERE dropoff_id = ?");
             $stmt->bind_param("i", $id);
             $stmt->execute();
+
+            if ($is_recyclable === 1) {
+                $insert = mysqli_query($conn, "
+                    INSERT INTO dropoff_recyclable
+                    VALUES
+                    ('$id', '$material_type', 'unassigned', 'uncompleted');
+                ");
+
+                $dropoff_datetime = mysqli_fetch_row(mysqli_query($conn, "SELECT dropoff_datetime FROM dropoff WHERE dropoff_id = $id"))[0];
+                $challenge_query = mysqli_query($conn, "
+                    SELECT * FROM challenge
+                    WHERE month = MONTHNAME('$dropoff_datetime');
+                ");
+                $challenge = mysqli_fetch_assoc($challenge_query);
+
+                if ($material_type === $challenge["material_required"]) {
+                    $challenge_id = $challenge["challenge_id"];
+                    $update_quota = mysqli_query($conn, "
+                        UPDATE user_challenge
+                        SET quantity_collected = quantity_collected + $actual
+                        WHERE user_id = '$userid' AND challenge_id = '$challenge_id';
+                    ");
+                }
+            } else {
+                $insert = mysqli_query($conn, "
+                    INSERT INTO dropoff_nonrecyclable
+                    VALUES
+                    ('$id', 'unassigned', 'uncompleted');
+                ");
+            }
 
             $conn->commit();
             header("Location: collection_records.php");
@@ -76,6 +108,12 @@ if ($id > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verify Collection</title>
     <link rel="stylesheet" href="../assets/collector.css">
+
+    <style>
+        #material-type-form {
+            display : none;
+        }
+    </style>
 </head>
 <body>
 
@@ -104,6 +142,7 @@ if ($id > 0) {
             <form method="post" class="form-card"
       data-confirm="Submit this check? You cannot edit it afterwards.">
     <input type="hidden" name="dropoff_id" value="<?= (int)$drop['dropoff_id'] ?>">
+    <input type="hidden" name="user_id" value="<?= $drop['user_id'] ?>">
 
     <label>Actual quantity
         <input type="number" name="actual_quantity" id="actual_quantity" min="0" required
@@ -113,8 +152,19 @@ if ($id > 0) {
 
                 <fieldset>
                     <legend>Recyclable?</legend>
-                    <label><input type="radio" name="is_recyclable" value="1" required> Yes</label>
-                    <label><input type="radio" name="is_recyclable" value="0"> No</label>
+                    <label><input type="radio" name="is_recyclable" id="is_recyclable" value="1" required> Yes</label>
+                    <label><input type="radio" name="is_recyclable" id="is_recyclable" value="0"> No</label>
+                </fieldset>
+
+                <fieldset id='material-type-form'>
+                    <label>Material Type: </label>
+                    <select name="material_type">
+                        <option value="" style="display:none;"> Select Material Type </option>
+                        <option value="paper"> Paper </option>
+                        <option value="plastic"> Plastic </option>
+                        <option value="glass"> Glass </option>
+                        <option value="aluminium"> Aluminium </option>
+                    </select>
                 </fieldset>
 
                 <div class="form-actions">

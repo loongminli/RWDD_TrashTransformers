@@ -42,6 +42,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                      collectionpoint_id, is_collected)
                     VALUES (?, ?, NOW(), ?, ?, 0)";
 
+            $challengenow_result = mysqli_query($conn, "
+                    SELECT challenge_id FROM challenge
+                    WHERE month = MONTHNAME(NOW());
+            ");
+            $challengenow = mysqli_fetch_row($challengenow_result)[0];
+
+            $challengecheck = mysqli_query($conn, "
+                SELECT * FROM user_challenge
+                WHERE user_id = '$user_id' AND challenge_id in
+                (
+                    SELECT challenge_id FROM challenge
+                    WHERE month = MONTHNAME(NOW())
+                );
+            ");
+
+            if (mysqli_num_rows($challengecheck) == 0) {
+                $insertchallengerecord = mysqli_query($conn, "
+                    INSERT INTO user_challenge (user_id, challenge_id, quantity_collected)
+                    VALUES
+                    ('$user_id', '$challengenow', 0);
+                ");
+            }
+
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("sisi", $item, $quantity, $user_id, $collectionpoint_id);
 
@@ -51,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             } else {
                 $error = "Could not save the drop-off.";
-            }
+            } 
         }
     }
 }
@@ -119,9 +142,9 @@ $result = mysqli_query($conn, $sql);
         <form action="createdropoff.php" method="POST">
             <div class="form-group">
 
-                <label for="material">Material Type</label>
+                <label for="material">Item</label>
                 <input type="text" id="material" name="material"
-                       placeholder="Enter Material Type" maxlength="50" required>
+                       placeholder="Enter Item" maxlength="50" required>
 
                 <label for="quantity">Quantity</label>
                 <input type="number" id="quantity" name="quantity"

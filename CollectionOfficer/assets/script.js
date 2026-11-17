@@ -71,3 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     });
+
+    document.querySelectorAll("#is_recyclable").forEach(element => {
+        element.addEventListener ("change", function () {
+            if (element.value === "1") {
+                document.getElementById("material-type-form").style.display = "grid";
+            } else if (element.value === "0") {
+                document.getElementById("material-type-form").style.display = "none";
+            }
+        });
+    });
