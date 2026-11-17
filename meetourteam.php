@@ -85,16 +85,16 @@
         <h1> Meet Our Team </h1>
 
         <div id="cards">
-            <div class="card" onclick="window.location.href='LINK HERE'">
-                <img src="logo.png" alt="NAMEEEEE" class="pfp">
+            <div class="card" onclick="window.location.href='aboutme-yuxuan/about_me.php'">
+                <img src="aboutme-yuxuan/images/me.jpeg" alt="yuxuan" class="pfp">
                 <div class="info">
                     <h2> Administrator </h2>
                     <h3> Gan Yu Xuan </h3>
                 </div>
             </div>
 
-            <div class="card" onclick="window.location.href='LINK HERE'">
-                <img src="logo.png" alt="NAMEEEEE" class="pfp">
+            <div class="card" onclick="window.location.href='aboutme-yanqi/CO_about_me.php'">
+                <img src="aboutme-yanqi/profile.jpeg" alt="yanqi" class="pfp">
                 <div class="info">
                     <h2> Collector </h2>
                     <h3> Wong Yan Qi </h3>

@@ -110,6 +110,7 @@ footer { text-align: center; padding: 1rem; background: var(--main); }
                 <li><a href="#education">Education</a></li>
                 <li><a href="#hobbies">Hobby</a></li>
                 <li><a href="c#ontact">Contact</a></li>
+                <li><a href="../meetourteam.php">Back</a></li>
             </ul>
          </nav>
     </header>

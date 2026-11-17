@@ -131,11 +131,17 @@
             .travel-images figcaption {
                 font-size: 12px;
             }
+
+            .back {
+                display : flex;
+                flex-direction : column;
+                align-items : center;
+            }
         }
     </style>
 </head>
 <body>
-
+    <div class="back"> <a href="../meetourteam.php">Back</a> </div>
     <h1>About Me</h1>
 
     <div class="container">
