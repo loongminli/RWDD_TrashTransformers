@@ -135,7 +135,6 @@ $recent_result = mysqli_query($conn, $sql);
 
 <section class="dashboard">
 
-    <!-- Monthly Challenge -->
     <div class="challenge">
         <h3>Monthly Recycling Challenge</h3>
 
@@ -184,7 +183,6 @@ $recent_result = mysqli_query($conn, $sql);
 
             </div>
 
-            <!-- Reward -->
             <div class="reward">
             <h3>Reward</h3>
 
@@ -253,7 +251,6 @@ $recent_result = mysqli_query($conn, $sql);
 
     <div class="dashboard-bottom">
 
-        <!-- Collection Points -->
         <section class="collection">
             <h3>Available Collection Points</h3>
 
@@ -280,7 +277,6 @@ $recent_result = mysqli_query($conn, $sql);
             </div>
         </section>
 
-        <!-- Recent Drop-offs -->
         <section class="dropoff-section">
             <h3>Recent Drop-offs</h3>
 
