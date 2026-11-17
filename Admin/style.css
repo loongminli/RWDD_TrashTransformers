@@ -1,172 +1,188 @@
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f7f7f2; 
-    color: #333;
+    background-color: ivory;
+    color: darkslategray;
 }
-
-/* Logo */
 .logo {
     width: 90px;
     height: auto;
     margin-bottom: 10px;
 }
 
-/* Header */
 .admin-header {
-    background-color: #cbd2c4;
+    background-color: gainsboro;
     text-align: center;
     padding: 20px;
 }
-
 .admin-header h2 {
     margin: 0;
-    color: #344236;
+    color: darkslategray;
 }
 
-.admin-header p {
-    margin-bottom: 0;
-}
-
-/* Navigation */
 .admin-nav {
-    background-color: #c4ae78;
+    background-color: tan;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
     padding: 12px;
 }
-
 .admin-nav a {
     color: black;
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 5px;
 }
-
 .admin-nav a:hover {
-    background-color: #e5ebdc;
+    background-color: honeydew;
 }
 
-/* Main Content */
+
 .main-content {
     max-width: 1200px;
-    margin: 30px auto;
-    padding: 20px;
+    margin: 10px auto;
+    padding: 10px;
 }
-
+.main-content h2{
+    margin-top: 50px;
+}
 .main-content h1,
 .main-content h2 {
-    color: #526c55;
+    color: darkolivegreen;
 }
-
-/* Dashboard Cards */
-.cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-top: 25px;
-}
-
-.card {
-    background-color: white;
-    padding: 25px;
-    border: 1px solid #d0d9c9;
-    border-radius: 12px;
+.main-content h1,
+.main-contenth2,
+.main-content p {
     text-align: center;
 }
 
-.card h3 {
-    color: #526c55;
+.cards {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    margin-top: 25px;
 }
-
+.card {
+    background-color: white;
+    padding: 15px;
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    text-align: center;
+}
 .card h2 {
-    font-size: 30px;
+    font-size: 26px;
+    margin: 15px 0;
 }
-
+.card h3 {
+    color: darkolivegreen;
+    margin: 10px 0;
+}
 .card p {
-    color: #666;
+    color: dimgray;
+    margin: 10px 0;
+}
+.dashboard-cards .card {
+    grid-column: span 2;
+}
+.dashboard-cards .card:nth-child(1),
+.dashboard-cards .card:nth-child(2) {
+    grid-column: span 3;
 }
 
-/* Buttons */
 .btn,
 button {
     display: inline-block;
-    background-color: #738c70;
+    background-color: rgb(120, 154, 50);
     color: white;
     padding: 10px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 40px;
     text-decoration: none;
     cursor: pointer;
 }
-
 .btn:hover,
 button:hover {
-    background-color: #526c55;
+    background-color: darkolivegreen;
 }
 
-/* Tables */
 table {
     width: 100%;
     border-collapse: collapse;
     background-color: white;
     margin-top: 20px;
 }
-
 th,
 td {
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid lightgray;
     text-align: left;
 }
-
 th {
-    background-color: #cbd2c4;
+    background-color: gainsboro;
 }
 
-/* Forms */
 form {
     background-color: white;
     padding: 20px;
-    border-radius: 10px;
     margin-top: 20px;
 }
-
-input,
-select,
-textarea {
+input, select, textarea {
     width: 100%;
     padding: 10px;
     margin: 8px 0 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid rgb(44, 70, 37);
+    border-radius: 10px;
     box-sizing: border-box;
 }
 
-/* Mobile View */
-@media (max-width: 900px) {
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.assigned-table th,
+.assigned-table td {
+    padding: 8px 12px;
+    vertical-align: middle;
+}
+.assigned-table td form {
+    display: inline-block;
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+.assignment-remove-form {
+    margin: 0;
+    padding: 0;
+    background: none;
+    display: inline-block;
+}
+.assigned-table td button {
+    margin: 0;
 }
 
+@media (max-width: 900px) {
+    .dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .dashboard-cards .card {
+        grid-column: span 1;
+    }
+    .dashboard-cards .card:nth-child(1),
+    .dashboard-cards .card:nth-child(2) {
+        grid-column: span 1;
+    }
+}
 @media (max-width: 600px) {
-    .cards {
+    .dashboard-cards {
         grid-template-columns: 1fr;
     }
-
     .admin-nav {
         flex-direction: column;
         text-align: center;
     }
-
     .main-content {
         margin: 10px;
         padding: 10px;
     }
-
     table {
         display: block;
         overflow-x: auto;

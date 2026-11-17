@@ -1,11 +1,30 @@
 <?php
-include "../dbconn.php"; 
+include "../dbconn.php";
+
+if (isset($_POST['action'])) {
+    if ($_POST['action'] == "update") {
+        $id = $_POST['user_id'];
+        $status = $_POST['is_active'];
+        $sql = "UPDATE user SET is_active='$status' WHERE user_id='$id'";
+
+        if (mysqli_query($conn, $sql)) {
+            header("Location: user_manage.php?success=update");
+            exit();
+        } else {
+            header("Location: user_manage.php?error=database");
+            exit();
+        }
+    }
+}
+
+$sql = "SELECT * FROM user";
+$result = mysqli_query($conn, $sql);
 
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     $sql = "SELECT * FROM user WHERE user_id='$id'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
+    $result_edit = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result_edit);
 }
 ?>
 
@@ -17,18 +36,14 @@ if (isset($_GET['edit'])) {
     <title>User Management</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
+<body onload="showMessage()">
 <?php include "header.php"; ?>
-
 <div class="main-content">
 
 <?php if (isset($_GET['edit']) && $row) { ?>
-
     <h1>Edit User Status</h1>
 
-    <form action="user_functions.php" method="POST">
-
+    <form action="user_manage.php" method="POST">
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
 
@@ -43,38 +58,23 @@ if (isset($_GET['edit'])) {
 
         <button type="submit">Save</button>
         <a href="user_manage.php" class="btn">Cancel</a>
-
     </form>
 
 <?php } else { ?>
-
     <h1>User Management</h1>
     <p>Manage user accounts and account status.</p>
 
     <table>
         <tr>
-            <th>User ID</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Gender</th>
-            <th>Account Made</th>
-            <th>Status</th>
-            <th>Action</th>
+            <th>User ID</th> <th>Username</th> <th>Gender</th><th>Account Made</th><th>Status</th><th>Action</th>
         </tr>
 
-        <?php
-        $sql = "SELECT * FROM user";
-        $result = mysqli_query($conn, $sql);
-
-        while ($row = mysqli_fetch_assoc($result)) {
-        ?>
+        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
         <tr>
             <td><?php echo $row['user_id']; ?></td>
             <td><?php echo $row['username']; ?></td>
-            <td><?php echo $row['password']; ?></td>
             <td><?php echo $row['gender']; ?></td>
             <td><?php echo $row['account_made']; ?></td>
-
             <td>
                 <?php
                 if ($row['is_active'] == 1) {
@@ -84,19 +84,14 @@ if (isset($_GET['edit'])) {
                 }
                 ?>
             </td>
-
             <td>
                 <a class="btn" href="user_manage.php?edit=<?php echo $row['user_id']; ?>">Edit</a>
             </td>
         </tr>
         <?php } ?>
-
     </table>
-
 <?php } ?>
-
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>

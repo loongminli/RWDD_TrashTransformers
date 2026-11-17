@@ -10,5 +10,5 @@
     <a href="challenge_manage.php">Challenges</a>
     <a href="reward_manage.php">Rewards</a>
     <a href="challenge_reward_manage.php">Challenge Rewards</a>
-    <a href="../logout.php"> Logout </a>
+    <a href="../logout.php">Logout</a>
 </nav>
