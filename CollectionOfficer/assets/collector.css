@@ -49,7 +49,7 @@ header {
 .logo img {
     border-radius : 100%;
     height: 3.5rem;
-    width: 3.5rem;
+    width: auto;
     display: block;
 }
 
@@ -152,7 +152,6 @@ header .logo { flex: 1 1 0; justify-content: flex-start; }
     margin-bottom: 1rem;
 }
 
-/* ---------- Cards (dashboard menu) ---------- */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -174,7 +173,6 @@ header .logo { flex: 1 1 0; justify-content: flex-start; }
 .menu-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
 .menu-link { font-weight: bold; text-decoration: underline; }
 
-/* ---------- Buttons ---------- */
 .button,
 .back-button {
     display: inline-block;
@@ -229,7 +227,6 @@ header .logo { flex: 1 1 0; justify-content: flex-start; }
 }
 .table-wide .info-table { min-width: 800px; }
 
-/* ---------- Forms ---------- */
 input { padding: 0.5rem; }
 input[readonly] { background-color: rgb(227, 227, 227); border: none; }
 
@@ -272,11 +269,9 @@ input[readonly] { background-color: rgb(227, 227, 227); border: none; }
 .form-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-top: 1rem; }
 .form-hint { display: block; margin-top: 0.3rem; font-weight: normal; font-size: 0.85rem; }
 
-/* ---------- Messages ---------- */
 .error { color: red; font-size: 0.9rem; margin-bottom: 1rem; }
 .alert { margin: 1rem auto; color: rgb(39, 167, 152); text-align: center; }
 
-/* ---------- Status labels ---------- */
 .badge {
     display: inline-block;
     padding: 0.1rem 0.6rem;
@@ -286,7 +281,7 @@ input[readonly] { background-color: rgb(227, 227, 227); border: none; }
 .badge-active   { background-color: greenyellow; color: rgb(1, 97, 1); }
 .badge-inactive { background-color: lightgray; color: #333; }
 
-/* ---------- Mobile ---------- */
+
 @media (max-width: 768px) {
     h2 { font-size: 100%; }
     header { position: relative; }

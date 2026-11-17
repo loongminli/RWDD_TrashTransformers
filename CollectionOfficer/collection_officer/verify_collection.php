@@ -76,7 +76,6 @@ if ($id > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verify Collection</title>
     <link rel="stylesheet" href="../assets/collector.css">
-    <link rel="stylesheet" href="../assets/collector.css">
 </head>
 <body>
 

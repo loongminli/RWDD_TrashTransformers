@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ---------- 1. 表单验证：必填文字不能只有空格 ----------
     function showFormError(form, message) {
         let box = form.parentElement.querySelector('.js-error');
         if (!box) {
@@ -29,14 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ---------- 2. 提交前确认（读取 data-confirm） ----------
     document.querySelectorAll('form[data-confirm]').forEach(form => {
         form.addEventListener('submit', (e) => {
             if (!confirm(form.dataset.confirm)) e.preventDefault();
         });
     });
 
-    // ---------- 3. Verify 页：实际数量和申报数量不同时提醒 ----------
     const actualInput = document.getElementById('actual_quantity');
     const qtyHint = document.getElementById('qtyHint');
 
