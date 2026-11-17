@@ -66,14 +66,13 @@ if (isset($_GET['edit'])) {
 
     <table>
         <tr>
-            <th>User ID</th> <th>Username</th> <th>Gender</th><th>Account Made</th><th>Status</th><th>Action</th>
+            <th>User ID</th> <th>Username</th><th>Account Made</th><th>Status</th><th>Action</th>
         </tr>
 
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
         <tr>
             <td><?php echo $row['user_id']; ?></td>
             <td><?php echo $row['username']; ?></td>
-            <td><?php echo $row['gender']; ?></td>
             <td><?php echo $row['account_made']; ?></td>
             <td>
                 <?php
