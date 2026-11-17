@@ -94,7 +94,7 @@ if (isset($_GET['edit'])) {
 
     <table>
         <tr>
-            <th>ID</th> <th>Month</th> <th>Year</th> <th>Material Required</th> <th>Quota(kg)</th> <th>Action</th>
+            <th>ID</th> <th>Month</th> <th>Year</th> <th>Material Required</th> <th>Quota</th> <th>Action</th>
         </tr>
 
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
