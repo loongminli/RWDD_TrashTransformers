@@ -16,7 +16,6 @@ if (isset($_POST['register'])) {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    // Check empty fields
     if (empty($tp)) {
         $tp_error = "Enter your TP Number.";
     }
@@ -36,7 +35,6 @@ if (isset($_POST['register'])) {
         $confirm_error = "Passwords do not match.";
     }
 
-    // Check if TP Number already exists
     if (!empty($tp)) {
 
         $tp = mysqli_real_escape_string($conn, $tp);
@@ -49,7 +47,6 @@ if (isset($_POST['register'])) {
         }
     }
 
-    // Register if there are no errors
     if ($tp_error == "" && $username_error == "" &&
         $password_error == "" && $confirm_error == "") {
 
@@ -70,7 +67,6 @@ if (isset($_POST['register'])) {
         }
     }
 
-    // Save error messages before redirecting
     $_SESSION['tp_error'] = $tp_error;
     $_SESSION['username_error'] = $username_error;
     $_SESSION['password_error'] = $password_error;
@@ -81,7 +77,6 @@ if (isset($_POST['register'])) {
     exit();
 }
 
-// Display errors once, then clear them
 $tp_error = $_SESSION['tp_error'] ?? "";
 $username_error = $_SESSION['username_error'] ?? "";
 $password_error = $_SESSION['password_error'] ?? "";

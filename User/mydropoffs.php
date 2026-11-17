@@ -8,7 +8,6 @@ if (!isset($_SESSION['id'])) {
 
 $user_id = mysqli_real_escape_string($conn, $_SESSION['id']);
 
-// Get student's drop-offs
 $sql = "SELECT d.dropoff_datetime, d.item, d.quantity,
                d.is_collected, c.collectionpoint
         FROM dropoff d
@@ -19,7 +18,6 @@ $sql = "SELECT d.dropoff_datetime, d.item, d.quantity,
 
 $dropoffs_result = mysqli_query($conn, $sql);
 
-// Get previous challenges
 $sql = "SELECT * FROM challenge
        WHERE year < YEAR(CURDATE())
 OR (year = YEAR(CURDATE())
@@ -125,7 +123,6 @@ $challenge_result = mysqli_query($conn, $sql);
                             $year = (int)$challenge['year'];
                             $material = mysqli_real_escape_string($conn, $challenge['material_required']);
 
-                            // Calculate student's verified recycling progress
                             $sql = "SELECT COALESCE(SUM(dc.actual_quantity), 0) AS total
                                     FROM dropoff d
                                     JOIN dropoff_check dc

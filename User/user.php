@@ -16,7 +16,6 @@ if (!$user) {
     exit();
 }
 
-// Current month's challenge
 $month = date("F");
 $year = date("Y");
 
@@ -37,7 +36,6 @@ if ($challenge) {
     $challenge_id = (int)$challenge['challenge_id'];
     $material = mysqli_real_escape_string($conn, $challenge['material_required']);
 
-    // Student's verified recycling progress
     $sql = "SELECT COALESCE(SUM(dc.actual_quantity), 0) AS total
             FROM dropoff d
             JOIN dropoff_check dc ON d.dropoff_id = dc.dropoff_id
@@ -58,7 +56,6 @@ if ($challenge) {
         $unlocked = $progress >= $challenge['quota'];
     }
 
-    // Reward linked to this month's challenge
     $sql = "SELECT r.reward FROM reward r
             JOIN challenge_reward cr ON r.reward_id = cr.reward_id
             WHERE cr.challenge_id = $challenge_id
@@ -67,7 +64,6 @@ if ($challenge) {
     $result = mysqli_query($conn, $sql);
     $current_reward = mysqli_fetch_assoc($result);
 
-    // Check if the student has claimed this reward
 $sql = "SELECT is_claimed
         FROM user_challenge
         WHERE user_id = '$tp'
@@ -82,12 +78,10 @@ if ($reward_record) {
 
 }
 
-// Collection points
 $points_result = mysqli_query($conn,
     "SELECT collectionpoint, is_active FROM collectionpoint ORDER BY collectionpoint_id"
 );
 
-// Recent drop-offs
 $sql = "SELECT d.dropoff_datetime, d.item, d.quantity,
                d.is_collected, c.collectionpoint
         FROM dropoff d

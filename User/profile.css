@@ -1,5 +1,4 @@
 
-/* GENERAL */
 * {
     box-sizing: border-box;
 }
@@ -11,7 +10,6 @@ body {
 
 
 
-/* PAGE */
 .profile-page {
     max-width: 1300px;
     margin: 45px auto;
@@ -48,7 +46,6 @@ body {
     margin-bottom: 30px;
 }
 
-/* MY ACCOUNT */
 .profile-card form {
     display: flex;
     flex-direction: column;
@@ -91,7 +88,6 @@ body {
     margin: 15px 0 20px;
 }
 
-/* SAVE BUTTON */
 .save-btn {
     background: #285540;
     color: white;
@@ -112,7 +108,6 @@ body {
     align-self: flex-start;
 }
 
-/* SAVE MESSAGE */
 .message {
     position: fixed;
     top: 85px;
@@ -130,7 +125,6 @@ body {
 }
 
 
-/* LOGOUT */
 .logout-area {
     display: flex;
     justify-content: flex-end;
@@ -154,7 +148,6 @@ body {
     background: #f8d8d0;
 }
 
-/* POPUP BACKGROUND */
 .logout-overlay {
     display: none;
     position: fixed;
@@ -165,7 +158,6 @@ body {
     justify-content: center;
 }
 
-/* POPUP BOX */
 .logout-popup {
     width: 90%;
     max-width: 360px;
@@ -189,7 +181,6 @@ body {
     margin: 0 0 25px;
 }
 
-/* POPUP BUTTONS */
 .logout-actions {
     display: flex;
     justify-content: center;
@@ -228,7 +219,6 @@ body {
 }
 
 
-/* MY REWARDS */
 .rewards-card > h3 {
     color: #285540;
     font-size: 21px;
@@ -237,7 +227,6 @@ body {
     margin-left: 35px;
 }
 
-/* CURRENT REWARD VOUCHER */
 .current-reward {
     width: 100%;
     max-width: 670px;
@@ -251,7 +240,6 @@ body {
 }
 
 
-/* VOUCHER TOP */
 .voucher-top {
     display: flex;
     justify-content: space-between;
@@ -270,7 +258,6 @@ body {
     object-fit: contain;
 }
 
-/* VOUCHER CENTER */
 .voucher-center {
     text-align: center;
     padding: 25px 0;
@@ -291,7 +278,6 @@ body {
     margin: 0;
 }
 
-/* VOUCHER BOTTOM */
 .voucher-bottom {
     border-top: 1px solid #d9dccb;
     padding-top: 15px;
@@ -342,7 +328,6 @@ body {
     margin-top: 15px;
 }
 
-/* REWARD SUMMARY */
 .reward-summary {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -369,7 +354,6 @@ body {
     margin: 0;
 }
 
-/* MY VOUCHERS */
 .voucher-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -412,7 +396,6 @@ body {
 
 
 
-/* MOBILE */
 @media (max-width: 700px) {
     .profile-page {
         margin: 20px auto;

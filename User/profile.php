@@ -11,7 +11,6 @@ $user_id = mysqli_real_escape_string($conn, $_SESSION['id']);
 $tab = $_GET['tab'] ?? 'account';
 $message = "";
 
-// Get user details
 $result = mysqli_query($conn, "SELECT * FROM user WHERE user_id = '$user_id' AND is_active = 1");
 $user = mysqli_fetch_assoc($result);
 
@@ -20,7 +19,6 @@ if (!$user) {
     exit();
 }
 
-// Save account changes
 if (isset($_POST['save_account'])) {
     $name = trim($_POST['fullname']);
     $nickname = trim($_POST['nickname']);
@@ -59,7 +57,6 @@ if (isset($_POST['save_account'])) {
     }
 }
 
-// Reward values
 $challenge = null;
 $reward = null;
 $progress = 0;
@@ -77,7 +74,6 @@ if ($tab == 'rewards') {
     $month = $today['month'];
     $year = $today['year'];
 
-    // Current challenge
     $result = mysqli_query($conn, "SELECT * FROM challenge WHERE month = '$month' AND year = $year LIMIT 1");
     $challenge = mysqli_fetch_assoc($result);
 
@@ -85,7 +81,6 @@ if ($tab == 'rewards') {
         $challenge_id = (int)$challenge['challenge_id'];
         $material = mysqli_real_escape_string($conn, $challenge['material_required']);
 
-        // Verified recycling progress
         $sql = "SELECT COALESCE(SUM(dc.actual_quantity), 0) AS total
                 FROM dropoff d
                 JOIN dropoff_check dc ON d.dropoff_id = dc.dropoff_id
@@ -101,7 +96,6 @@ if ($tab == 'rewards') {
         $data = mysqli_fetch_assoc($result);
         $progress = $data['total'];
 
-        // Current reward
         $sql = "SELECT r.reward
                 FROM reward r
                 JOIN challenge_reward cr ON r.reward_id = cr.reward_id
@@ -111,7 +105,6 @@ if ($tab == 'rewards') {
         $result = mysqli_query($conn, $sql);
         $reward = mysqli_fetch_assoc($result);
 
-        // Check claim status
         $result = mysqli_query($conn,
             "SELECT is_claimed FROM user_challenge
              WHERE user_id = '$user_id' AND challenge_id = $challenge_id");
@@ -122,7 +115,6 @@ if ($tab == 'rewards') {
             $claimed = $record['is_claimed'];
         }
 
-        // Claim reward
         if (isset($_POST['claim_reward']) &&
             $reward &&
             $progress >= $challenge['quota'] &&
@@ -144,7 +136,6 @@ if ($tab == 'rewards') {
         }
     }
 
-    // Use voucher
     if (isset($_POST['use_reward'])) {
         $id = (int)$_POST['use_reward'];
 
@@ -160,7 +151,6 @@ if ($tab == 'rewards') {
         exit();
     }
 
-    // Reward summary
     $result = mysqli_query($conn,
         "SELECT COALESCE(SUM(is_claimed), 0) AS earned,
                 COALESCE(SUM(is_used), 0) AS used
@@ -169,7 +159,6 @@ if ($tab == 'rewards') {
 
     $summary = mysqli_fetch_assoc($result);
 
-    // Unused vouchers
     $sql = "SELECT c.challenge_id, c.month, c.year, r.reward
             FROM user_challenge uc
             JOIN challenge c ON uc.challenge_id = c.challenge_id

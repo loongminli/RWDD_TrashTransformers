@@ -28,7 +28,6 @@ body {
 
 a { color: inherit; }
 
-/* header */
 header {
     display: flex;
     justify-content: space-between;
@@ -42,12 +41,10 @@ nav ul { display: flex; gap: 1rem; list-style: none; flex-wrap: wrap; }
 nav a { text-decoration: none; padding: 0.3rem 0.8rem; border-radius: 20px; }
 nav a:hover { background: var(--accent); }
 
-/* layout */
 main { max-width: 900px; margin: 0 auto; padding: 1rem 1.5rem; }
 section { margin: 2rem 0; }
 section h2 { margin-bottom: 1rem; border-bottom: 3px solid var(--accent); display: inline-block; }
 
-/* personal info */
 .intro { display: flex; align-items: center; gap: 1.5rem; }
 .profile-photo {
     width: 180px;
@@ -57,12 +54,10 @@ section h2 { margin-bottom: 1rem; border-bottom: 3px solid var(--accent); displa
     border: 3px solid black;
 }
 
-/* education */
 .timeline { list-style: none; border-left: 4px solid var(--accent); padding-left: 1rem; }
 .timeline li { margin-bottom: 1.2rem; }
 .years { font-style: italic; }
 
-/* hobbies */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -79,7 +74,6 @@ section h2 { margin-bottom: 1rem; border-bottom: 3px solid var(--accent); displa
 
 .hobby-img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; }
 
-/* contact */
 .social-links { display: flex; gap: 1rem; list-style: none; margin-top: 0.75rem; flex-wrap: wrap; }
 .social-links a {
     display: inline-block;
@@ -93,7 +87,6 @@ section h2 { margin-bottom: 1rem; border-bottom: 3px solid var(--accent); displa
 
 footer { text-align: center; padding: 1rem; background: var(--main); }
 
-/* mobile */
 @media (max-width: 600px) {
     .intro { flex-direction: column; text-align: center; }
     header { justify-content: center; }

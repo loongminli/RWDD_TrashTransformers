@@ -6,7 +6,6 @@ body {
     background: #f4f4e1;
 }
 
-/* Navigation */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -69,7 +68,6 @@ body {
     font-weight: 550;
 }
 
-/* Dashboard Layout */
 .welcome {
     width: 90%;
     margin: 30px auto;
@@ -114,7 +112,6 @@ body {
     border-radius: 10px;
 }
 
-/* Monthly Challenge */
 .challenge {
     background-color: #a19f7b;
     background-image: url("challengee.png");
@@ -208,7 +205,6 @@ body {
 }
 
 
-/* Reward */
 .reward {
     background-color: #D2B900;
     border: 1px solid #93872f;
@@ -345,7 +341,6 @@ body {
     color: #385b3b;
 }
 
-/* Collection Points */
 .collection {
     background-color: #98A735;
     border: 1px solid #adba58;
@@ -417,7 +412,6 @@ body {
     background-color: #d32f2f;
 }
 
-/* Recent Drop-offs */
 .dropoff-section {
     background-color: #a19f7b;
     background-image: url("dropofff.png");
@@ -479,7 +473,6 @@ body {
     font-weight: 700;
 }
 
-/* Profile Dropdown */
 .profile-menu {
     position: relative;
 }
@@ -524,7 +517,6 @@ body {
     text-align: left;
 }
 
-/* Mobile Layout */
 @media (max-width: 768px) {
     .dashboard,
     .dashboard-bottom {
