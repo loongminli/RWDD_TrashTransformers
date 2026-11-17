@@ -315,13 +315,13 @@ if ($tab == 'rewards') {
 
                     <div class="voucher-progress-text">
                         <span>
-                            Recycle <?php echo $challenge['quota']; ?> kg of
+                            Recycle <?php echo $challenge['quota']; ?> of
                             <?php echo htmlspecialchars($challenge['material_required']); ?>
                         </span>
 
                         <span>
                             <?php echo $progress; ?> /
-                            <?php echo $challenge['quota']; ?> kg
+                            <?php echo $challenge['quota']; ?>
                         </span>
                     </div>
                     

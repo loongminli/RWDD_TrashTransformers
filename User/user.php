@@ -152,7 +152,7 @@ $recent_result = mysqli_query($conn, $sql);
 
                 <div class="challenge-info-box">
                     <span>TARGET</span>
-                    <h4><?php echo $challenge['quota']; ?> kg</h4>
+                    <h4><?php echo $challenge['quota']; ?></h4>
                 </div>
             </div>
 
@@ -160,7 +160,7 @@ $recent_result = mysqli_query($conn, $sql);
             <div class="progress">
                 <h4>Your Progress</h4>
 
-                <p><?php echo $progress; ?> / <?php echo $challenge['quota']; ?> kg</p>
+                <p><?php echo $progress; ?> / <?php echo $challenge['quota']; ?> </p>
 
                 <div class="progress-track">
                     <div class="progress-fill"
@@ -207,8 +207,8 @@ $recent_result = mysqli_query($conn, $sql);
                     </div>
 
                     <div class="voucher-progress">
-                        <p>Recycle <?php echo $challenge['quota']; ?> kg of <?php echo htmlspecialchars($challenge['material_required']); ?></p>
-                        <p><?php echo $progress; ?> / <?php echo $challenge['quota']; ?> kg</p>
+                        <p>Recycle <?php echo $challenge['quota']; ?> of <?php echo htmlspecialchars($challenge['material_required']); ?></p>
+                        <p><?php echo $progress; ?> / <?php echo $challenge['quota']; ?></p>
                     </div>
 
                     <div class="voucher-progress-track">
@@ -299,7 +299,7 @@ $recent_result = mysqli_query($conn, $sql);
                                 <tr>
                                     <td><?php echo date("d M Y", strtotime($dropoff['dropoff_datetime'])); ?></td>
                                     <td><?php echo htmlspecialchars($dropoff['item']); ?></td>
-                                    <td><?php echo htmlspecialchars($dropoff['quantity']); ?> kg</td>
+                                    <td><?php echo htmlspecialchars($dropoff['quantity']); ?></td>
                                     <td><?php echo htmlspecialchars($dropoff['collectionpoint']); ?></td>
                                     <td>
                                         <?php if ($dropoff['is_collected'] == 1): ?>

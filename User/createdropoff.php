@@ -123,10 +123,10 @@ $result = mysqli_query($conn, $sql);
                 <input type="text" id="material" name="material"
                        placeholder="Enter Material Type" maxlength="50" required>
 
-                <label for="quantity">Quantity (kg)</label>
+                <label for="quantity">Quantity</label>
                 <input type="number" id="quantity" name="quantity"
                        min="1" max="20" step="1"
-                       placeholder="Enter Weight" required>
+                       placeholder="Enter Quantity" required>
 
                 <label for="collection-point">Collection Point</label>
                 <select id="collection-point" name="collection_point" required>

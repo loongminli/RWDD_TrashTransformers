@@ -86,7 +86,7 @@ $challenge_result = mysqli_query($conn, $sql);
                             <tr>
                                 <td><?php echo date("d M Y", strtotime($dropoff['dropoff_datetime'])); ?></td>
                                 <td><?php echo htmlspecialchars($dropoff['item']); ?></td>
-                                <td><?php echo htmlspecialchars($dropoff['quantity']); ?> kg</td>
+                                <td><?php echo htmlspecialchars($dropoff['quantity']); ?></td>
                                 <td><?php echo htmlspecialchars($dropoff['collectionpoint']); ?></td>
                                 <td><?php echo $dropoff['is_collected'] == 1 ? "Collected" : "Pending"; ?></td>
                             </tr>
@@ -150,7 +150,7 @@ $challenge_result = mysqli_query($conn, $sql);
 
                                 <td>
                                     <?php echo $progress; ?> /
-                                    <?php echo htmlspecialchars($challenge['quota']); ?> kg
+                                    <?php echo htmlspecialchars($challenge['quota']); ?>
                                 </td>
 
                                 <td>
