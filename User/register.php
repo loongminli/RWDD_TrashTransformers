@@ -97,6 +97,7 @@ unset($_SESSION['register_error']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="mobile.css">
 </head>
 
 <body>

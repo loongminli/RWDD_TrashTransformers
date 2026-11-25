@@ -39,6 +39,7 @@ $challenge_result = mysqli_query($conn, $sql);
     <title>My Drop-offs - Trash Transformers</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mydropoffs.css">
+    <link rel="stylesheet" href="mobile.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
