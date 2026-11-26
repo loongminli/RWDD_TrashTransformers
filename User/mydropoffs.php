@@ -1,5 +1,9 @@
 <?php
-include "../dbconn.php";
+require_once __DIR__ . '/../dbconn.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['id'])) {
     header("Location: login.php");
@@ -18,17 +22,26 @@ $sql = "SELECT d.dropoff_datetime, d.item, d.quantity,
 
 $dropoffs_result = mysqli_query($conn, $sql);
 
-$sql = "SELECT * FROM challenge
-       WHERE year < YEAR(CURDATE())
-OR (year = YEAR(CURDATE())
-    AND FIELD(month, 'January', 'February', 'March',
-              'April', 'May', 'June', 'July', 'August',
-              'September', 'October', 'November', 'December')
-        < MONTH(CURDATE()))
-ORDER BY year DESC, challenge_id DESC
-LIMIT 12";
+
+$sql = "SELECT c.*, COALESCE(uc.quantity_collected, 0) AS progress
+        FROM challenge c
+        LEFT JOIN user_challenge uc
+            ON c.challenge_id = uc.challenge_id
+            AND uc.user_id = '$user_id'
+        WHERE c.year < YEAR(CURDATE())
+           OR (c.year = YEAR(CURDATE())
+               AND FIELD(c.month, 'January', 'February', 'March',
+                         'April', 'May', 'June', 'July', 'August',
+                         'September', 'October', 'November', 'December')
+                   < MONTH(CURDATE()))
+        ORDER BY c.year DESC,
+                 FIELD(c.month, 'January', 'February', 'March',
+                       'April', 'May', 'June', 'July', 'August',
+                       'September', 'October', 'November', 'December') DESC
+        LIMIT 12";
 
 $challenge_result = mysqli_query($conn, $sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -46,9 +59,11 @@ $challenge_result = mysqli_query($conn, $sql);
 
 <nav class="navbar">
     <div class="logo">
-        <a href="../index.php"> <img src="../logo.png" alt="Trash Transformers Logo"> </a>
-        <span>Trash Transformers</span>
-    </div>
+    <a href="../index.php">
+        <img src="../logo.png" alt="Trash Transformers Logo">
+    </a>
+    <span>Trash Transformers</span>
+</div>
 
      <ul>
         <li><a href="user.php">Home</a></li>
@@ -120,26 +135,7 @@ $challenge_result = mysqli_query($conn, $sql);
                         <?php while ($challenge = mysqli_fetch_assoc($challenge_result)): ?>
 
                             <?php
-                            $month = mysqli_real_escape_string($conn, $challenge['month']);
-                            $year = (int)$challenge['year'];
-                            $material = mysqli_real_escape_string($conn, $challenge['material_required']);
-
-                            $sql = "SELECT COALESCE(SUM(dc.actual_quantity), 0) AS total
-                                    FROM dropoff d
-                                    JOIN dropoff_check dc
-                                    ON d.dropoff_id = dc.dropoff_id
-                                    JOIN dropoff_recyclable dr
-                                    ON d.dropoff_id = dr.dropoff_id
-                                    WHERE d.user_id = '$user_id'
-                                    AND d.is_collected = 1
-                                    AND dc.is_recyclable = 1
-                                    AND dr.material_type = '$material'
-                                    AND MONTHNAME(d.dropoff_datetime) = '$month'
-                                    AND YEAR(d.dropoff_datetime) = $year";
-
-                            $progress_result = mysqli_query($conn, $sql);
-                            $progress_data = mysqli_fetch_assoc($progress_result);
-                            $progress = $progress_data['total'];
+                            $progress = $challenge['progress'];
                             ?>
 
                             <tr>
